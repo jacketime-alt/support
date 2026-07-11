@@ -1,0 +1,483 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fur Baby Companion | Pet Age Tracker, Memory Journal & Wallpaper Maker</title>
+    <meta name="description" content="Fur Baby Companion: The ad-free pet companion app with vet-accurate age calculator, memory journal, AI wallpapers, lock screen widgets, and milestone reminders. Track every moment with your fur baby.">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+        }
+        :root {
+            --primary: #8b5a2b;
+            --primary-light: #a07855;
+            --bg-light: #fdf6f0;
+            --bg-white: #ffffff;
+            --text-dark: #333333;
+            --text-gray: #666666;
+            --border-light: #e0d5c9;
+            --shadow: 0 4px 20px rgba(0,0,0,0.08);
+        }
+        body {
+            background-color: var(--bg-light);
+            color: var(--text-dark);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        /* Hero Section */
+        .hero {
+            padding: 80px 0 60px;
+            text-align: center;
+        }
+        .app-icon {
+            width: 120px;
+            height: 120px;
+            border-radius: 24px;
+            background-color: var(--primary);
+            margin: 0 auto 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 2.5rem;
+            font-weight: bold;
+            /* 替换下方链接为你的App图标直链，删除此行注释和默认背景色即可 */
+            background-image: url('');
+            background-size: cover;
+            background-position: center;
+        }
+        .hero h1 {
+            font-size: 3rem;
+            color: var(--primary);
+            margin-bottom: 12px;
+            font-weight: 700;
+        }
+        .hero .subtitle {
+            font-size: 1.3rem;
+            color: var(--primary-light);
+            margin-bottom: 20px;
+            font-weight: 500;
+        }
+        .hero .slogan {
+            font-size: 1.1rem;
+            color: var(--text-gray);
+            max-width: 700px;
+            margin: 0 auto 32px;
+        }
+        .download-btn {
+            display: inline-block;
+            background-color: var(--primary);
+            color: white;
+            padding: 14px 32px;
+            border-radius: 12px;
+            text-decoration: none;
+            font-size: 1.1rem;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            box-shadow: var(--shadow);
+        }
+        .download-btn:hover {
+            background-color: #704823;
+            transform: translateY(-2px);
+        }
+        /* Features Section */
+        .features {
+            padding: 60px 0;
+        }
+        .section-title {
+            text-align: center;
+            font-size: 2rem;
+            color: var(--primary);
+            margin-bottom: 48px;
+            font-weight: 700;
+        }
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 32px;
+        }
+        .feature-card {
+            background-color: var(--bg-white);
+            padding: 32px 24px;
+            border-radius: 16px;
+            box-shadow: var(--shadow);
+            transition: all 0.3s ease;
+        }
+        .feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 25px rgba(0,0,0,0.1);
+        }
+        .feature-icon {
+            width: 50px;
+            height: 50px;
+            border-radius: 12px;
+            background-color: #f0e6dc;
+            color: var(--primary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+        }
+        .feature-card h3 {
+            font-size: 1.3rem;
+            color: var(--primary);
+            margin-bottom: 12px;
+            font-weight: 600;
+        }
+        .feature-card p {
+            color: var(--text-gray);
+            line-height: 1.7;
+        }
+        /* Why Choose Us Section */
+        .why-us {
+            padding: 60px 0;
+            background-color: var(--bg-white);
+        }
+        .why-us-list {
+            max-width: 800px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+        .why-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 16px;
+        }
+        .why-icon {
+            font-size: 1.3rem;
+            color: var(--primary);
+            margin-top: 2px;
+            flex-shrink: 0;
+        }
+        .why-item h4 {
+            font-size: 1.15rem;
+            color: var(--primary);
+            margin-bottom: 6px;
+        }
+        .why-item p {
+            color: var(--text-gray);
+        }
+        /* Pricing Section */
+        .pricing {
+            padding: 60px 0;
+        }
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 24px;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+        .pricing-card {
+            background-color: var(--bg-white);
+            border-radius: 16px;
+            padding: 36px 28px;
+            box-shadow: var(--shadow);
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+            border: 2px solid transparent;
+            transition: all 0.3s ease;
+        }
+        .pricing-card.featured {
+            border-color: var(--primary);
+            transform: scale(1.03);
+        }
+        .pricing-card:hover {
+            transform: translateY(-5px);
+        }
+        .pricing-card.featured:hover {
+            transform: scale(1.03) translateY(-5px);
+        }
+        .pricing-tag {
+            display: inline-block;
+            background-color: var(--primary);
+            color: white;
+            padding: 4px 16px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-bottom: 20px;
+            align-self: flex-start;
+        }
+        .pricing-card h3 {
+            font-size: 1.6rem;
+            color: var(--primary);
+            margin-bottom: 12px;
+        }
+        .price {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--text-dark);
+            margin-bottom: 8px;
+        }
+        .price span {
+            font-size: 1rem;
+            font-weight: 400;
+            color: var(--text-gray);
+        }
+        .pricing-desc {
+            color: var(--text-gray);
+            margin-bottom: 24px;
+            padding-bottom: 24px;
+            border-bottom: 1px solid var(--border-light);
+        }
+        .pricing-features {
+            list-style: none;
+            margin-bottom: 32px;
+            flex-grow: 1;
+        }
+        .pricing-features li {
+            padding: 8px 0;
+            color: var(--text-dark);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .pricing-features li::before {
+            content: "✓";
+            color: var(--primary);
+            font-weight: bold;
+            font-size: 1.1rem;
+        }
+        .pricing-btn {
+            display: block;
+            text-align: center;
+            background-color: var(--primary);
+            color: white;
+            padding: 12px 0;
+            border-radius: 10px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+        .pricing-btn.outline {
+            background-color: transparent;
+            border: 2px solid var(--primary);
+            color: var(--primary);
+        }
+        .pricing-btn:hover {
+            background-color: #704823;
+            color: white;
+        }
+        /* Footer */
+        footer {
+            background-color: var(--bg-white);
+            padding: 40px 0 30px;
+            border-top: 1px solid var(--border-light);
+            text-align: center;
+        }
+        .footer-links {
+            margin-bottom: 20px;
+        }
+        .footer-links a {
+            color: var(--primary);
+            text-decoration: none;
+            margin: 0 15px;
+            font-weight: 500;
+        }
+        .footer-links a:hover {
+            text-decoration: underline;
+        }
+        .copyright {
+            color: var(--text-gray);
+            font-size: 0.9rem;
+        }
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero {
+                padding: 60px 0 40px;
+            }
+            .hero h1 {
+                font-size: 2.2rem;
+            }
+            .hero .subtitle {
+                font-size: 1.1rem;
+            }
+            .section-title {
+                font-size: 1.6rem;
+            }
+            .features-grid, .pricing-grid {
+                grid-template-columns: 1fr;
+            }
+            .pricing-card.featured {
+                transform: none;
+            }
+            .footer-links a {
+                display: block;
+                margin: 10px 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <div class="app-icon">🐾</div>
+            <h1>Fur Baby Companion</h1>
+            <p class="subtitle">Pet Companion, Age Tracker & Memory Journal</p>
+            <p class="slogan">Your Fur Baby Isn’t Just a Pet – They’re Family. Calculate accurate ages, record precious moments, create custom wallpapers, and keep your fur baby with you every day — all in one ad-free app.</p>
+            <!-- 官方App Store下载链接已替换完成 -->
+            <a href="https://apps.apple.com/app/id6766693417" class="download-btn" target="_blank">Download on the App Store</a>
+        </div>
+    </section>
+
+    <!-- Core Features Section -->
+    <section class="features">
+        <div class="container">
+            <h2 class="section-title">Everything You Need For Your Fur Baby</h2>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">📅</div>
+                    <h3>Vet-Accurate Age Calculator</h3>
+                    <p>Ditch the outdated “1 year = 7 human years” myth. Our calculator uses official North American veterinary guidelines for precise, species-specific age conversion for dogs, cats, and all your companion animals.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">📱</div>
+                    <h3>Home & Lock Screen Widget</h3>
+                    <p>Keep your fur baby with you every time you unlock your iPhone. Our lightweight 2×2 widget auto-updates with your pet’s age, days together, and upcoming milestones, with full light & dark mode support.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🖼️</div>
+                    <h3>Custom Lock Screen Wallpapers</h3>
+                    <p>Turn your iPhone lock screen into a loving tribute to your pet. Choose from professional templates, customize with your pet’s photo and style, and save HD 2160*4680 wallpapers with no watermarks, forever free.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🔔</div>
+                    <h3>Milestone & Care Reminders</h3>
+                    <p>Never miss a meaningful moment or important care task. Set custom reminders for birthdays, adoption anniversaries, vaccinations, deworming, and more, synced directly to your iPhone calendar with flexible repeat rules.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">✨</div>
+                    <h3>Memory Journal (Moments)</h3>
+                    <p>Capture every precious moment with photos, mood, location, and 6 structured templates. Calendar, map, and statistics views let you relive your journey with your fur baby in beautiful detail.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🤖</div>
+                    <h3>AI Wallpaper Generator</h3>
+                    <p>Create unique, personalized wallpapers with DALL·E 3. Upload a reference photo, describe your vision, and let AI paint a one-of-a-kind portrait for your lock screen.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">📊</div>
+                    <h3>Retrospect — Auto Recaps</h3>
+                    <p>Weekly, monthly, and yearly auto-generated review cards from your Moments. Beautifully curated with cover photos, highlights, and optional music — ready to share.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Why Choose Us Section -->
+    <section class="why-us">
+        <div class="container">
+            <h2 class="section-title">Why Pet Parents Love Us</h2>
+            <div class="why-us-list">
+                <div class="why-item">
+                    <div class="why-icon">🌿</div>
+                    <div>
+                        <h4>100% Ad-Free Forever</h4>
+                        <p>No interruptions, no pop-ups, no forced videos. We never clutter your experience with ads, ever.</p>
+                    </div>
+                </div>
+                <div class="why-item">
+                    <div class="why-icon">🔒</div>
+                    <div>
+                        <h4>Privacy-First Design</h4>
+                        <p>All your pet’s data is stored locally on your device by default. We never sell or share your personal information, fully GDPR/CCPA compliant.</p>
+                    </div>
+                </div>
+                <div class="why-item">
+                    <div class="why-icon">❤️</div>
+                    <div>
+                        <h4>No-Anxiety Experience</h4>
+                        <p>We only celebrate the time you share with your pet. No stressful lifespan countdowns or fear-based content, ever.</p>
+                    </div>
+                </div>
+                <div class="why-item">
+                    <div class="why-icon">📱</div>
+                    <div>
+                        <h4>Native iOS Optimization</h4>
+                        <p>Built exclusively for iOS 17+, with seamless integration for iPhone 13-17 series, no clunky third-party integrations.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing Section (所有下载链接已替换完成) -->
+    <section class="pricing">
+        <div class="container">
+            <h2 class="section-title">Simple, Transparent Pricing</h2>
+            <div class="pricing-grid">
+                <div class="pricing-card">
+                    <div class="pricing-tag">Flexible</div>
+                    <h3>Monthly Pro</h3>
+                    <p class="price">$2.99 <span>/ month</span></p>
+                    <p class="pricing-desc">1-week free trial included</p>
+                    <ul class="pricing-features">
+                        <li>Unlimited pet profiles</li>
+                        <li>All 9 species (8 preset + custom)</li>
+                        <li>Unlimited memory records & photos/video</li>
+                        <li>All 6 memory templates & custom fields</li>
+                        <li>Full wallpaper template library</li>
+                        <li>Unlimited milestones, advanced repeat rules</li>
+                        <li>PDF / Image / JSON batch export</li>
+                        <li>Priority customer support</li>
+                    </ul>
+                    <a href="https://apps.apple.com/app/id6766693417" class="pricing-btn outline" target="_blank">Get Monthly Pro</a>
+                </div>
+                <div class="pricing-card featured">
+                    <div class="pricing-tag">Most Popular</div>
+                    <h3>6-Month Pro</h3>
+                    <p class="price">$9.99 <span>/ 6 months</span></p>
+                    <p class="pricing-desc">7-day free trial for new subscribers</p>
+                    <ul class="pricing-features">
+                        <li>All Pro features as Monthly Pro</li>
+                        <li>7-day free trial for new subscribers</li>
+                        <li>Save 44% compared to monthly</li>
+                    </ul>
+                    <a href="https://apps.apple.com/app/id6766693417" class="pricing-btn" target="_blank">Start Free Trial</a>
+                </div>
+                <div class="pricing-card">
+                    <div class="pricing-tag">Best Value</div>
+                    <h3>Lifetime Access</h3>
+                    <p class="price">$39.99 <span>/ lifetime</span></p>
+                    <p class="pricing-desc">Pay once, own Pro forever</p>
+                    <ul class="pricing-features">
+                        <li>All Pro features — forever</li>
+                        <li>Pay once, own it for life</li>
+                        <li>No recurring billing, no surprises</li>
+                        <li>All future Pro features included</li>
+                        <li>Lifetime priority support</li>
+                    </ul>
+                    <a href="https://apps.apple.com/app/id6766693417" class="pricing-btn outline" target="_blank">Get Lifetime Access</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer 链接已100%按要求校准 -->
+    <footer>
+        <div class="container">
+            <div class="footer-links">
+                <a href="https://jacketime-alt.github.io/support/FurBaby/FurBaby%20Support.html" target="_blank">App Support</a>
+                <a href="https://jacketime-alt.github.io/support/FurBaby/FurBaby%20Privacy%20Policy.html" target="_blank">Privacy Policy</a>
+                <a href="https://jacketime-alt.github.io/support/FurBaby/FurBaby%20Terms%20of%20Service.html" target="_blank">Terms of Service</a>
+            </div>
+            <p class="copyright">© 2026 Jun Huang. All Rights Reserved. Fur Baby Companion is available exclusively on the Apple App Store.</p>
+        </div>
+    </footer>
+</body>
+</html>
