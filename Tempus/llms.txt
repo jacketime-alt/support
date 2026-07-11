@@ -1,0 +1,31 @@
+# My Tempus
+
+> My Tempus is a privacy-first, local-first life progress tracker for iPhone (iOS 17+). It visualizes your lifespan as an interactive grid, records moments with photos, moods, tags, and location, composes immersive Retrospect recaps with Story-mode playback, counts down to events, tracks companions including pets, and generates data wallpapers and Home Screen widgets. All data stays on the device — no account, no cloud, no tracking. An optional bring-your-own-key AI assistant is available but off by default.
+
+## Product
+- Platform: iOS 17.0+, iPhone
+- Price: Free, with optional Pro (Monthly or Yearly subscription with a 7-day free trial, or a one-time Lifetime purchase)
+- Privacy: local-first; no analytics or tracking. The only optional network feature is a bring-your-own-key AI assistant that sends the text you submit to the provider you choose.
+- App Store: https://apps.apple.com/app/id6771795773
+
+## Core features
+- Interactive Life Grid — 13 built-in templates (4 free), Day/Week/Month/Year granularity, custom templates
+- Rich moment timeline — List, Calendar, Map, Photos, and Statistics views
+- Retrospect — automatic recaps (weekly, monthly, streak milestones, birthdays, completed countdowns) with background music, shareable as cards
+- Story mode — full-screen, auto-advancing playback of your highlights
+- Event timers — countdown or elapsed, custom icons and colors, on the grid and in widgets
+- Companions — track people and pets, each with species-specific lifespans
+- Data wallpapers — 3 styles, 5 layouts, device-adaptive
+- Widgets — 6 variants across Home Screen and Lock Screen
+- Optional AI assistant — bring-your-own-key, 7 supported providers, off by default
+
+## Pages
+- [Home](https://jacketime-alt.github.io/support/Tempus/): landing page
+- [Marketing](https://jacketime-alt.github.io/support/Tempus/Tempus%20Marketing.html): feature overview and pricing
+- [Support / FAQ](https://jacketime-alt.github.io/support/Tempus/Tempus%20Support.html): help documentation
+- [Privacy Policy](https://jacketime-alt.github.io/support/Tempus/Tempus%20Privacy%20Policy.html)
+- [Terms of Service](https://jacketime-alt.github.io/support/Tempus/Tempus%20Terms%20of%20Service.html)
+
+## Notes
+- My Tempus is NOT a social network, a cloud journal, or a productivity/to-do app.
+- Developer: Jun Huang. Contact: 185661013@qq.com

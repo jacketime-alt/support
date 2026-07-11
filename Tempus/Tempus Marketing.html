@@ -1,0 +1,571 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Tempus | Life Progress Widget</title>
+    <meta name="description" content="My Tempus: Visualize life's progress for you, your family, and your pets. Life Grid, Events, Timeline, immersive Retrospect recaps, Story mode, Wallpapers, and Widgets — ad-free and private.">
+    <meta name="keywords" content="life progress tracker, life grid, moment journal, retrospect recap, story mode, countdown timer, life wallpaper, iOS widget, privacy app, pet age tracker">
+    <meta name="author" content="Jun Huang">
+    <meta name="robots" content="index, follow, max-image-preview:large">
+    <link rel="canonical" href="https://jacketime-alt.github.io/support/Tempus/Tempus%20Marketing.html">
+
+    <!-- OpenGraph -->
+    <meta property="og:title" content="My Tempus — Life Progress Widget">
+    <meta property="og:description" content="Make time visible. Track life progress with an interactive grid, immersive Retrospect recaps, Story mode, event timers, and always-on widgets. Private by default.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://jacketime-alt.github.io/support/Tempus/Tempus%20Marketing.html">
+    <meta property="og:image" content="https://jacketime-alt.github.io/support/Tempus/Tempus.png">
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="My Tempus — Life Progress Widget">
+    <meta name="twitter:description" content="Make time visible. An interactive life grid, Retrospect recaps, Story mode, event timers, and widgets. Free on iOS, private by default.">
+
+    <!-- AI crawler: product identity for generative engines -->
+    <meta name="ai-description" content="My Tempus is a privacy-first, local-first life progress tracker for iPhone (iOS 17+). It visualizes your lifespan as an interactive grid, records moments with photos/moods/tags/location, composes immersive Retrospect recaps and Story-mode playback, counts down to events, tracks companions including pets, and generates data wallpapers and Home Screen widgets. An optional bring-your-own-key AI assistant is available but off by default. It is NOT a social network or a cloud journal.">
+    <meta name="ai-use-cases" content="visualizing lifespan, tracking life milestones, journaling with photos, reliving memories in recaps, counting down to birthdays and events, tracking pet age, generating lock screen wallpapers, Home Screen widgets">
+
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": ["SoftwareApplication", "MobileApplication"],
+        "name": "My Tempus",
+        "operatingSystem": "iOS 17.0+",
+        "applicationCategory": "LifestyleApplication",
+        "description": "A privacy-first life progress tracker that visualizes your lifespan as an interactive grid. Record moments, relive them in immersive Retrospect recaps and Story mode, track companions and pets, count down to events, and generate custom wallpapers and widgets.",
+        "featureList": ["Interactive Life Grid with 13 templates", "Rich moment timeline (List, Calendar, Map, Photos, Statistics)", "Retrospect auto recaps", "Story mode", "Event countdown timers", "Companion and pet tracking", "Data wallpapers", "6 Home Screen and Lock Screen widgets", "Optional bring-your-own-key AI assistant"],
+        "offers": [
+            { "@type": "Offer", "price": "0", "priceCurrency": "USD", "name": "Free" },
+            { "@type": "Offer", "price": "39.99", "priceCurrency": "USD", "name": "Yearly Pro" },
+            { "@type": "Offer", "price": "79.99", "priceCurrency": "USD", "name": "Lifetime" }
+        ],
+        "author": { "@type": "Person", "name": "Jun Huang" }
+    }
+    </script>
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "mainEntity": [
+            { "@type": "Question", "name": "What is My Tempus?", "acceptedAnswer": { "@type": "Answer", "text": "My Tempus is a privacy-first life progress tracker for iOS that visualizes your lifespan as an interactive grid of cells. You record moments with photos, moods, tags, and location, relive them in immersive Retrospect recaps and Story mode, count down to events, track companions and pets, and generate data wallpapers and widgets." } },
+            { "@type": "Question", "name": "Is My Tempus private?", "acceptedAnswer": { "@type": "Answer", "text": "Yes. All data is stored locally on your device with no account, no cloud, and no tracking. The only optional network feature is a bring-your-own-key AI assistant, off by default, which sends only the text you submit to the provider you choose." } },
+            { "@type": "Question", "name": "How much does My Tempus cost?", "acceptedAnswer": { "@type": "Answer", "text": "It is free to download. The free tier includes 2 companions, 2 moments, 2 event timers, 3 wallpapers per day, and Small plus Lock Screen widgets. Pro unlocks unlimited everything via a Monthly or Yearly subscription (7-day free trial) or a one-time Lifetime purchase." } }
+        ]
+    }
+    </script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+        }
+        :root {
+            --primary: #8b5a2b;
+            --primary-light: #a07855;
+            --bg-light: #fdf6f0;
+            --bg-white: #ffffff;
+            --text-dark: #333333;
+            --text-gray: #666666;
+            --border-light: #e0d5c9;
+            --shadow: 0 4px 20px rgba(0,0,0,0.08);
+        }
+        body {
+            background-color: var(--bg-light);
+            color: var(--text-dark);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        /* Hero */
+        .hero {
+            padding: 80px 0 60px;
+            text-align: center;
+        }
+        .app-icon {
+            width: 120px;
+            height: 120px;
+            border-radius: 24px;
+            background-color: var(--primary);
+            margin: 0 auto 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 2.5rem;
+            font-weight: bold;
+        }
+        .hero h1 {
+            font-size: 3rem;
+            color: var(--primary);
+            margin-bottom: 12px;
+            font-weight: 700;
+        }
+        .hero .subtitle {
+            font-size: 1.3rem;
+            color: var(--primary-light);
+            margin-bottom: 20px;
+            font-weight: 500;
+        }
+        .hero .slogan {
+            font-size: 1.1rem;
+            color: var(--text-gray);
+            max-width: 700px;
+            margin: 0 auto 32px;
+        }
+        .download-btn {
+            display: inline-block;
+            background-color: var(--primary);
+            color: white;
+            padding: 14px 32px;
+            border-radius: 12px;
+            text-decoration: none;
+            font-size: 1.1rem;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            box-shadow: var(--shadow);
+        }
+        .download-btn:hover {
+            background-color: #704823;
+            transform: translateY(-2px);
+        }
+        /* Features */
+        .features {
+            padding: 60px 0;
+        }
+        .section-title {
+            text-align: center;
+            font-size: 2rem;
+            color: var(--primary);
+            margin-bottom: 16px;
+            font-weight: 700;
+        }
+        .section-subtitle {
+            text-align: center;
+            color: var(--text-gray);
+            margin-bottom: 48px;
+            font-size: 1.05rem;
+        }
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+            gap: 32px;
+        }
+        .feature-card {
+            background-color: var(--bg-white);
+            padding: 32px 24px;
+            border-radius: 16px;
+            box-shadow: var(--shadow);
+            transition: all 0.3s ease;
+        }
+        .feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 25px rgba(0,0,0,0.1);
+        }
+        .feature-icon {
+            width: 50px;
+            height: 50px;
+            border-radius: 12px;
+            background-color: #f0e6dc;
+            color: var(--primary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+        }
+        .feature-card h3 {
+            font-size: 1.3rem;
+            color: var(--primary);
+            margin-bottom: 12px;
+            font-weight: 600;
+        }
+        .feature-card p {
+            color: var(--text-gray);
+            line-height: 1.7;
+        }
+        /* Why Us */
+        .why-us {
+            padding: 60px 0;
+            background-color: var(--bg-white);
+        }
+        .why-us-list {
+            max-width: 800px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+        .why-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 16px;
+        }
+        .why-icon {
+            font-size: 1.3rem;
+            color: var(--primary);
+            margin-top: 2px;
+            flex-shrink: 0;
+        }
+        .why-item h4 {
+            font-size: 1.15rem;
+            color: var(--primary);
+            margin-bottom: 6px;
+        }
+        .why-item p {
+            color: var(--text-gray);
+        }
+        /* Pricing */
+        .pricing {
+            padding: 60px 0;
+        }
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 24px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .pricing-card {
+            background-color: var(--bg-white);
+            border-radius: 16px;
+            padding: 36px 28px;
+            box-shadow: var(--shadow);
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+            border: 2px solid transparent;
+            transition: all 0.3s ease;
+        }
+        .pricing-card.featured {
+            border-color: var(--primary);
+            transform: scale(1.03);
+        }
+        .pricing-card:hover {
+            transform: translateY(-5px);
+        }
+        .pricing-card.featured:hover {
+            transform: scale(1.03) translateY(-5px);
+        }
+        .pricing-tag {
+            display: inline-block;
+            background-color: var(--primary);
+            color: white;
+            padding: 4px 16px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-bottom: 20px;
+            align-self: flex-start;
+        }
+        .pricing-card h3 {
+            font-size: 1.6rem;
+            color: var(--primary);
+            margin-bottom: 12px;
+        }
+        .price {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--text-dark);
+            margin-bottom: 8px;
+        }
+        .price span {
+            font-size: 1rem;
+            font-weight: 400;
+            color: var(--text-gray);
+        }
+        .pricing-desc {
+            color: var(--text-gray);
+            margin-bottom: 24px;
+            padding-bottom: 24px;
+            border-bottom: 1px solid var(--border-light);
+        }
+        .pricing-features {
+            list-style: none;
+            margin-bottom: 32px;
+            flex-grow: 1;
+        }
+        .pricing-features li {
+            padding: 8px 0;
+            color: var(--text-dark);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .pricing-features li::before {
+            content: "✓";
+            color: var(--primary);
+            font-weight: bold;
+            font-size: 1.1rem;
+        }
+        .pricing-btn {
+            display: block;
+            text-align: center;
+            background-color: var(--primary);
+            color: white;
+            padding: 12px 0;
+            border-radius: 10px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+        .pricing-btn.outline {
+            background-color: transparent;
+            border: 2px solid var(--primary);
+            color: var(--primary);
+        }
+        .pricing-btn:hover {
+            background-color: #704823;
+            color: white;
+        }
+        /* Footer */
+        footer {
+            background-color: var(--bg-white);
+            padding: 40px 0 30px;
+            border-top: 1px solid var(--border-light);
+            text-align: center;
+        }
+        .footer-links {
+            margin-bottom: 20px;
+        }
+        .footer-links a {
+            color: var(--primary);
+            text-decoration: none;
+            margin: 0 15px;
+            font-weight: 500;
+        }
+        .footer-links a:hover {
+            text-decoration: underline;
+        }
+        .copyright {
+            color: var(--text-gray);
+            font-size: 0.9rem;
+        }
+        @media (max-width: 768px) {
+            .hero { padding: 60px 0 40px; }
+            .hero h1 { font-size: 2.2rem; }
+            .hero .subtitle { font-size: 1.1rem; }
+            .section-title { font-size: 1.6rem; }
+            .features-grid, .pricing-grid { grid-template-columns: 1fr; }
+            .pricing-card.featured { transform: none; }
+            .footer-links a { display: block; margin: 10px 0; }
+        }
+    </style>
+</head>
+<body>
+    <section class="hero">
+        <div class="container">
+            <div class="app-icon">⏳</div>
+            <h1>My Tempus</h1>
+            <p class="subtitle">Life Progress Widget</p>
+            <p class="slogan">Make time visible. Track life progress for yourself, your family, and your pets — with a beautiful grid, event timers, and a rich timeline. Relive your story through immersive Retrospect recaps and Story mode, dress your lock screen with data wallpapers, and keep it all close with always-on widgets. Every moment counts.</p>
+            <a href="https://apps.apple.com/app/id6771795773" class="download-btn" target="_blank">Download on the App Store</a>
+        </div>
+    </section>
+
+    <section class="features">
+        <div class="container">
+            <h2 class="section-title">Everything You Can Do</h2>
+            <p class="section-subtitle">A complete toolkit for visualizing, recording, and sharing the time that matters.</p>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">🔲</div>
+                    <h3>Life Grid</h3>
+                    <p>Visualize any companion's lifespan as a grid of cells — day, week, month, or year. Each cell represents a unit of time. 13 built-in templates cover emotional bonds, personal growth, and life milestones, plus custom templates of your own. Tap any cell to view moments from that day.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">📅</div>
+                    <h3>Event Timers</h3>
+                    <p>Count down to future dates or count up from past ones. Birthdays, anniversaries, trips, deadlines — each with custom icons and colors. Events appear as markers on the Life Grid and can be pinned to your lock screen widget.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">📋</div>
+                    <h3>Rich Timeline</h3>
+                    <p>Record life moments with mood, text, tags, location, and photos. Browse them in <strong>five views</strong>: List (grouped by date, searchable), Calendar (month grid), Map (geotagged moments), Photos (filterable photo grid), and Statistics (mood charts, top locations, activity trends).</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">✨</div>
+                    <h3>Retrospect Recaps</h3>
+                    <p>Your moments, composed into an immersive, auto-playing recap with its own soundtrack. Recaps arrive for weekly and monthly summaries, streak milestones, memorable moment counts, birthdays, and completed countdowns — with count-up stats, mood trends, photo memories, a map of your places, and auto-detected themes. Share any recap as beautiful cards, or revisit them in your Library.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">▶️</div>
+                    <h3>Story Mode</h3>
+                    <p>Play your moments as a full-screen, auto-advancing story with a progress bar and background music. Switch between <strong>Highlights</strong> and <strong>Recent</strong>, tap any card to open its detail, and hold to pause. A cinematic way to look back on the days that mattered.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">👥</div>
+                    <h3>Companions</h3>
+                    <p><strong>Companions</strong> — track yourself, your partner, kids, parents, and pets all in one app. Give each companion a <strong>photo avatar</strong> (snap or pick from library, cropped into a circular portrait). Set their birth date and watch their <strong>age update in real time</strong>. Pets have species-specific lifespans with <strong>custom pet types</strong> (define any animal with custom icon and lifespan). Each companion gets their own grid, stats, and timeline. Free: 2 companions. Pro: unlimited.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🖼️</div>
+                    <h3>Wallpapers</h3>
+                    <p>Turn your life grid into a beautiful lock screen or home screen wallpaper. 3 styles (Minimal, Data, Story) across 5 layouts including premium Storywall and Pure. Free tier: 3 wallpapers per day. Pro: unlimited.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🧩</div>
+                    <h3>6 Widget Variants</h3>
+                    <p><strong>Life Progress</strong> (progress bar), <strong>Events</strong> (countdown display), <strong>Grid</strong> (mini life grid with labels), <strong>Ring</strong> (circular gauge), <strong>Calendar</strong> (heatmap), and <strong>Composite</strong> (ring + grid + stats). Free: Small + Lock Screen. Pro: all sizes.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">📸</div>
+                    <h3>Photo Gallery & Viewer</h3>
+                    <p>All your moment photos in one place. Browse photos grouped by day, week, month, or year. Filter by tags and companions. The moment editor uses an <strong>adaptive image grid</strong> — single photos display at natural aspect ratio, multiple photos align at unified row height with width adapting to each photo's proportions. Full-screen viewer with pinch-to-zoom and swipe navigation. Choose between Reference mode or Local Copy storage.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">⚡</div>
+                    <h3>Smart Recording</h3>
+                    <p>The moment editor adapts to you. Frequently used sections auto-expand. Adaptive photo grid preserves aspect ratios — no forced cropping. Event icons support 50+ SF Symbols (6 categories), 80+ emoji (7 categories), or custom photos — all searchable. 8 color choices per timer. Mark events complete to hide them from widgets and keep your list clean.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">📤</div>
+                    <h3>Moment Sharing</h3>
+                    <p>Turn any moment into a beautiful share card with mood, photos, location, tags, companions, and event info. Rendered as a high-resolution image, shared via the system share sheet. Also available from the timeline context menu.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🎨</div>
+                    <h3>Personalized & Private</h3>
+                    <p>4 themes: System, Light, Dark, and Sepia. Customizable icons and colors for every event and companion. All data stored locally on your device — no accounts, no cloud, no tracking. Your life data is yours alone. An <strong>optional AI assistant</strong> (off by default, uses your own API key) can turn a sentence into a moment, event, or companion when you want the shortcut.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="why-us">
+        <div class="container">
+            <h2 class="section-title">Why My Tempus</h2>
+            <div class="why-us-list">
+                <div class="why-item">
+                    <div class="why-icon">🌿</div>
+                    <div>
+                        <h4>100% Ad-Free Forever</h4>
+                        <p>No interruptions, no pop-ups, no forced videos. Just you and the time that matters.</p>
+                    </div>
+                </div>
+                <div class="why-item">
+                    <div class="why-icon">🔒</div>
+                    <div>
+                        <h4>Privacy-First by Default</h4>
+                        <p>All data is stored locally on your iPhone. No accounts, no cloud uploads, no tracking. The app works fully offline — the only time anything leaves your device is if you switch on the optional AI assistant with your own API key.</p>
+                    </div>
+                </div>
+                <div class="why-item">
+                    <div class="why-icon">⏱️</div>
+                    <div>
+                        <h4>Time You Can See</h4>
+                        <p>Numbers are abstract. A grid you can scan in half a second is not. My Tempus makes time tangible so you live with intention.</p>
+                    </div>
+                </div>
+                <div class="why-item">
+                    <div class="why-icon">🐾</div>
+                    <div>
+                        <h4>People & Pets Together</h4>
+                        <p>One app for everyone you care about. Species-specific age tracking for cats, dogs, and rabbits — not the "multiply by 7" myth.</p>
+                    </div>
+                </div>
+                <div class="why-item">
+                    <div class="why-icon">📱</div>
+                    <div>
+                        <h4>Built for iOS 17+</h4>
+                        <p>Native SwiftUI with Swift 6 concurrency. Widgets, themes, lock screen integration, and smooth performance — optimized for iPhone 13 through 17 series.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="pricing">
+        <div class="container">
+            <h2 class="section-title">Simple, Transparent Pricing</h2>
+            <p class="section-subtitle">Start free. Upgrade when you're ready for unlimited everything.</p>
+            <div class="pricing-grid">
+                <div class="pricing-card">
+                    <div class="pricing-tag">Starter</div>
+                    <h3>Free</h3>
+                    <p class="price">$0 <span>/ forever</span></p>
+                    <p class="pricing-desc">Perfect for getting started</p>
+                    <ul class="pricing-features">
+                        <li>Up to 2 companions</li>
+                        <li>Up to 2 moments</li>
+                        <li>Up to 2 event timers</li>
+                        <li>Small & Lock Screen widgets</li>
+                        <li>3 wallpaper generations/day</li>
+                        <li>4 free templates</li>
+                    </ul>
+                    <a href="https://apps.apple.com/app/id6771795773" class="pricing-btn outline" target="_blank">Download Free</a>
+                </div>
+
+                <div class="pricing-card">
+                    <div class="pricing-tag">Flexible</div>
+                    <h3>Monthly Pro</h3>
+                    <p class="price">$5.99 <span>/ month</span></p>
+                    <p class="pricing-desc">7-day free trial · No long-term commitment</p>
+                    <ul class="pricing-features">
+                        <li>Unlimited companions</li>
+                        <li>Unlimited moments</li>
+                        <li>Unlimited event timers</li>
+                        <li>All widget sizes & variants</li>
+                        <li>Unlimited wallpaper generations</li>
+                        <li>Full template library (13)</li>
+                        <li>Milestone stories</li>
+                    </ul>
+                    <a href="https://apps.apple.com/app/id6771795773" class="pricing-btn outline" target="_blank">Get Monthly Pro</a>
+                </div>
+
+                <div class="pricing-card featured">
+                    <div class="pricing-tag">Most Popular</div>
+                    <h3>Yearly Pro</h3>
+                    <p class="price">$39.99 <span>/ year</span></p>
+                    <p class="pricing-desc">7-day free trial · Save 44% vs monthly</p>
+                    <ul class="pricing-features">
+                        <li>Unlimited companions</li>
+                        <li>Unlimited moments</li>
+                        <li>Unlimited event timers</li>
+                        <li>All widget sizes & variants</li>
+                        <li>Unlimited wallpaper generations</li>
+                        <li>Full template library (13)</li>
+                        <li>Milestone stories</li>
+                        <li>Auto wallpaper updates</li>
+                        <li>All future Pro features included</li>
+                    </ul>
+                    <a href="https://apps.apple.com/app/id6771795773" class="pricing-btn" target="_blank">Start Free Trial</a>
+                </div>
+
+                <div class="pricing-card">
+                    <div class="pricing-tag">Best Value</div>
+                    <h3>Lifetime</h3>
+                    <p class="price">$79.99 <span>/ once</span></p>
+                    <p class="pricing-desc">Pay once, own Pro forever</p>
+                    <ul class="pricing-features">
+                        <li>All Pro features — forever</li>
+                        <li>No recurring billing ever</li>
+                        <li>Unlimited companions & moments</li>
+                        <li>All current & future features</li>
+                        <li>All widgets, templates, wallpapers</li>
+                        <li>Lifetime priority support</li>
+                    </ul>
+                    <a href="https://apps.apple.com/app/id6771795773" class="pricing-btn outline" target="_blank">Get Lifetime Access</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="footer-links">
+                <a href="https://jacketime-alt.github.io/support/Tempus/Tempus%20Support.html" target="_blank">App Support</a>
+                <a href="https://jacketime-alt.github.io/support/Tempus/Tempus%20Privacy%20Policy.html" target="_blank">Privacy Policy</a>
+                <a href="https://jacketime-alt.github.io/support/Tempus/Tempus%20Terms%20of%20Service.html" target="_blank">Terms of Service</a>
+            </div>
+            <p class="copyright">© 2026 Jun Huang. All Rights Reserved. My Tempus is available exclusively on the Apple App Store.</p>
+        </div>
+    </footer>
+</body>
+</html>
