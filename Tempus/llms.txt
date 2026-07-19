@@ -3,7 +3,7 @@
 > My Tempus is a privacy-first, local-first life progress tracker for iPhone (iOS 17+). It visualizes your lifespan as an interactive grid, records moments with photos, moods, tags, and location, composes immersive Retrospect recaps with Story-mode playback, counts down to events, tracks companions including pets, and generates data wallpapers and Home Screen widgets. All data stays on the device — no account, no cloud, no tracking. An optional bring-your-own-key AI assistant is available but off by default.
 
 ## Product
-- Platform: iOS 17.0+, iPhone
+- Platform: iOS 17.0+, iPhone, Apple Watch (watchOS 10+)
 - Price: Free, with optional Pro (Monthly or Yearly subscription with a 7-day free trial, or a one-time Lifetime purchase)
 - Privacy: local-first; no analytics or tracking. The only optional network feature is a bring-your-own-key AI assistant that sends the text you submit to the provider you choose.
 - App Store: https://apps.apple.com/app/id6771795773
@@ -17,6 +17,7 @@
 - Companions — track people and pets, each with species-specific lifespans
 - Data wallpapers — 3 styles, 5 layouts, device-adaptive
 - Widgets — 6 variants across Home Screen and Lock Screen
+- Apple Watch app — watchOS 10+, 4 complication styles (Circular, Corner, Rectangular, Inline), full watch app with progress bar, time remaining, and active events; data syncs from iPhone via Bluetooth/WiFi and is cached on the watch
 - Optional AI assistant — bring-your-own-key, 7 supported providers, off by default
 
 ## Pages
