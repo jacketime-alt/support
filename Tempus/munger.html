@@ -1,0 +1,1048 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Charlie Munger's 99-Year Life, Visualized — My Tempus</title>
+    <meta name="description" content="Charlie Munger's extraordinary 99-year journey — from Omaha to Harvard Law to Berkshire Hathaway — visualized as an interactive Life Grid. See how My Tempus makes any life story visible.">
+    <meta name="author" content="Jun Huang">
+
+    <!-- OpenGraph -->
+    <meta property="og:title" content="Charlie Munger's 99-Year Life, Visualized — My Tempus">
+    <meta property="og:description" content="See a 99-year journey rendered as a Life Grid. From WW2 to Berkshire — every era, visible at a glance.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://jacketime-alt.github.io/support/Tempus/munger.html">
+    <meta property="og:image" content="https://jacketime-alt.github.io/support/Tempus/assets/munger-og.png">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Charlie Munger's 99-Year Life, Visualized">
+    <meta name="twitter:description" content="99 years. 99 cells. One life, visible at a glance. See how My Tempus makes any story a grid you can explore.">
+
+    <!-- Structured Data: Article + Person -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Article",
+        "headline": "Charlie Munger's 99-Year Life, Visualized with My Tempus",
+        "description": "How the My Tempus Life Grid app renders a remarkable 99-year journey through time as an interactive grid of moments.",
+        "author": { "@type": "Person", "name": "Jun Huang" },
+        "about": {
+            "@type": "Person",
+            "name": "Charlie Munger",
+            "birthDate": "1924-01-01",
+            "deathDate": "2023-11-28",
+            "description": "American investor, businessman, and philanthropist. Vice Chairman of Berkshire Hathaway.",
+            "knows": [
+                { "@type": "Person", "name": "Warren Buffett" },
+                { "@type": "Person", "name": "Benjamin Graham" }
+            ]
+        },
+        "image": "https://jacketime-alt.github.io/support/Tempus/assets/munger-og.png"
+    }
+    </script>
+
+    <!-- Structured Data: FAQ about the concept -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "mainEntity": [
+            {
+                "@type": "Question",
+                "name": "What does Charlie Munger's Life Grid look like?",
+                "acceptedAnswer": { "@type": "Answer", "text": "In My Tempus, Munger's 99-year life renders as a 10×10 grid of year cells — blue for past, yellow for the present (through 2023), gray for the future beyond his lifespan. Each cell with a star holds a key moment: Harvard Law, meeting Buffett, the See's Candies acquisition. Zoom in to see months, zoom out to see the full arc." }
+            },
+            {
+                "@type": "Question",
+                "name": "Can I use My Tempus to track historical figures?",
+                "acceptedAnswer": { "@type": "Answer", "text": "Yes. My Tempus lets you create companions with a birth date and lifespan. For historical figures, set their birth and lifespan end dates to see their entire timeline rendered as a grid. Record moments with photos, moods, tags, and locations to build a rich biographical diary." }
+            }
+        ]
+    }
+    </script>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,600;1,400&display=swap" rel="stylesheet">
+
+    <style>
+        /* ── Design Tokens ── */
+        :root {
+            --ink: #1B1B2F;
+            --ink-light: #555577;
+            --page: #F7F5F0;
+            --card: #FFFFFF;
+            --warm-accent: #C4956A;
+            --warm-light: #EDE0D0;
+            --grid-blue: #6B8FA3;
+            --grid-past: #5B7F93;
+            --grid-present: #E8C84A;
+            --grid-future: #E0DDD5;
+            --grid-star: #C4956A;
+            --shadow: 0 4px 24px rgba(0,0,0,0.06);
+            --shadow-lg: 0 12px 48px rgba(0,0,0,0.10);
+            --radius: 16px;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: var(--page);
+            color: var(--ink);
+            line-height: 1.6;
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        .container { max-width: 1100px; margin: 0 auto; padding: 0 24px; }
+
+        /* ── Typography ── */
+        .serif { font-family: 'Playfair Display', 'Georgia', serif; }
+        .heading-xl { font-size: clamp(2.5rem, 5vw, 4rem); font-weight: 800; line-height: 1.05; letter-spacing: -0.02em; }
+        .heading-lg  { font-size: clamp(1.8rem, 3.5vw, 2.8rem); font-weight: 800; line-height: 1.1; letter-spacing: -0.015em; }
+        .heading-md  { font-size: clamp(1.2rem, 2vw, 1.5rem); font-weight: 700; line-height: 1.2; }
+
+        /* ── Buttons ── */
+        .btn-primary {
+            display: inline-flex; align-items: center; gap: 10px;
+            background: var(--ink); color: white;
+            padding: 16px 32px; border-radius: 12px;
+            text-decoration: none; font-weight: 600; font-size: 1.05rem;
+            transition: all 0.3s ease;
+        }
+        .btn-primary:hover {
+            background: #333355; transform: translateY(-2px);
+            box-shadow: 0 8px 24px rgba(27,27,47,0.25);
+        }
+
+        .btn-secondary {
+            display: inline-flex; align-items: center; gap: 10px;
+            background: white; color: var(--ink);
+            padding: 16px 32px; border-radius: 12px;
+            text-decoration: none; font-weight: 600; font-size: 1.05rem;
+            border: 2px solid #E0DDD5;
+            transition: all 0.3s ease;
+        }
+        .btn-secondary:hover { border-color: var(--warm-accent); background: var(--warm-light); }
+
+        /* ── Hero ── */
+        .hero {
+            min-height: 100vh;
+            background: linear-gradient(160deg, #EDE0D0 0%, #F7F5F0 40%, #F0EBE3 100%);
+            display: flex; align-items: center;
+            position: relative; overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute; width: 800px; height: 800px;
+            top: -200px; right: -200px;
+            background: radial-gradient(circle, rgba(196,149,106,0.12) 0%, transparent 70%);
+            border-radius: 50%;
+        }
+
+        .hero-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+            padding: 80px 0;
+            position: relative; z-index: 1;
+        }
+
+        .hero-text .pre-title {
+            font-size: 0.85rem; font-weight: 600; letter-spacing: 0.06em;
+            text-transform: uppercase; color: var(--warm-accent);
+            margin-bottom: 16px;
+        }
+
+        .hero-text h1 { margin-bottom: 20px; }
+        .hero-text h1 .highlight { color: var(--warm-accent); }
+
+        .hero-text .tagline {
+            font-size: 1.2rem; color: var(--ink-light);
+            margin-bottom: 32px; max-width: 480px; line-height: 1.7;
+        }
+
+        .hero-stats {
+            display: flex; gap: 32px; margin-bottom: 36px;
+        }
+        .hero-stat { text-align: left; }
+        .hero-stat .number {
+            font-size: 2rem; font-weight: 800; color: var(--ink);
+            line-height: 1;
+        }
+        .hero-stat .label {
+            font-size: 0.8rem; color: var(--ink-light);
+            margin-top: 4px;
+        }
+
+        .hero-cta { display: flex; gap: 16px; flex-wrap: wrap; }
+
+        /* ── Grid Visual ── */
+        .grid-visual {
+            display: flex; flex-direction: column; align-items: center;
+        }
+
+        .grid-container {
+            background: var(--card);
+            border-radius: 20px;
+            padding: 24px 28px 20px;
+            box-shadow: var(--shadow-lg);
+            width: 100%; max-width: 420px;
+        }
+
+        .grid-title {
+            font-size: 0.8rem; font-weight: 600; color: var(--ink-light);
+            margin-bottom: 14px; letter-spacing: 0.03em;
+            display: flex; justify-content: space-between;
+        }
+
+        .grid-title .years { color: var(--warm-accent); }
+
+        .grid-legend {
+            display: flex; gap: 16px; margin-bottom: 12px;
+            font-size: 0.7rem; color: var(--ink-light);
+        }
+        .grid-legend span { display: flex; align-items: center; gap: 4px; }
+        .legend-dot { width: 10px; height: 10px; border-radius: 2px; display: inline-block; }
+
+        .life-grid {
+            display: grid;
+            grid-template-columns: repeat(10, 1fr);
+            gap: 4px;
+            aspect-ratio: 10 / 10;
+        }
+
+        .life-grid .cell {
+            border-radius: 3px;
+            aspect-ratio: 1;
+            min-height: 0;
+            transition: all 0.15s ease;
+            position: relative;
+        }
+
+        .life-grid .cell.past { background: var(--grid-past); }
+        .life-grid .cell.present { background: var(--grid-present); }
+        .life-grid .cell.future { background: var(--grid-future); }
+        .life-grid .cell.star { outline: 2px solid var(--grid-star); outline-offset: -2px; z-index: 1; }
+        .life-grid .cell.star::after {
+            content: '★';
+            position: absolute; top: 50%; left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 0.6em; color: var(--grid-star);
+        }
+        .life-grid .cell:hover { transform: scale(1.15); z-index: 2; box-shadow: 0 2px 8px rgba(0,0,0,0.2); }
+
+        /* Tooltip on hover */
+        .cell-group {
+            position: relative;
+        }
+        .cell-tooltip {
+            display: none;
+            position: absolute; bottom: calc(100% + 8px); left: 50%;
+            transform: translateX(-50%);
+            background: var(--ink); color: white;
+            padding: 6px 12px; border-radius: 8px;
+            font-size: 0.7rem; white-space: nowrap;
+            z-index: 10;
+            pointer-events: none;
+        }
+        .cell-group:hover .cell-tooltip { display: block; }
+
+        .grid-caption {
+            margin-top: 14px;
+            font-size: 0.8rem; color: var(--ink-light);
+            text-align: center;
+            line-height: 1.5;
+        }
+
+        /* ── Section base ── */
+        .section { padding: 100px 0; }
+        .section-header {
+            text-align: center; margin-bottom: 64px;
+        }
+        .section-header h2 { margin-bottom: 16px; }
+        .section-header p {
+            color: var(--ink-light); font-size: 1.1rem;
+            max-width: 600px; margin: 0 auto;
+        }
+
+        /* ── Timeline ── */
+        .timeline-section { background: linear-gradient(180deg, var(--page) 0%, var(--card) 100%); }
+
+        .timeline {
+            display: flex; flex-direction: column;
+            position: relative;
+            max-width: 800px; margin: 0 auto;
+            padding-left: 40px;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute; left: 16px; top: 0; bottom: 0;
+            width: 2px;
+            background: linear-gradient(to bottom, var(--warm-light), var(--warm-accent), var(--warm-light));
+        }
+
+        .timeline-item {
+            position: relative;
+            padding: 0 0 32px 32px;
+        }
+
+        .timeline-item:last-child { padding-bottom: 0; }
+
+        .timeline-item .dot {
+            position: absolute; left: -32px; top: 4px;
+            width: 12px; height: 12px;
+            background: var(--warm-accent);
+            border: 3px solid var(--card);
+            border-radius: 50%;
+            z-index: 1;
+        }
+
+        .timeline-item .dot.major {
+            width: 16px; height: 16px;
+            background: var(--ink);
+            left: -34px; top: 2px;
+        }
+
+        .timeline-item .year-badge {
+            font-size: 0.75rem; font-weight: 700; color: var(--warm-accent);
+            letter-spacing: 0.05em; margin-bottom: 2px;
+        }
+        .timeline-item h3 {
+            font-size: 1.1rem; font-weight: 700;
+            margin-bottom: 4px;
+        }
+        .timeline-item p {
+            font-size: 0.9rem; color: var(--ink-light);
+            line-height: 1.6; max-width: 600px;
+        }
+        .timeline-item .meta-tags {
+            display: flex; gap: 6px; flex-wrap: wrap; margin-top: 8px;
+        }
+        .timeline-item .meta-tags span {
+            font-size: 0.7rem; padding: 3px 10px;
+            background: var(--warm-light); color: var(--ink-light);
+            border-radius: 20px;
+        }
+        .timeline-item .meta-tags span.mood { background: #F0EBE3; }
+
+        .timeline-era-label {
+            position: relative;
+            padding: 8px 0 12px 32px;
+            font-family: 'Playfair Display', serif;
+            font-size: 0.9rem; font-style: italic;
+            color: var(--warm-accent);
+        }
+
+        /* ── App Features Grid ── */
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+        }
+
+        .feature-card {
+            background: var(--card);
+            border-radius: var(--radius);
+            padding: 32px;
+            box-shadow: var(--shadow);
+            transition: all 0.3s ease;
+        }
+        .feature-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-lg); }
+
+        .feature-icon {
+            width: 48px; height: 48px;
+            background: var(--warm-light);
+            border-radius: 12px;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 1.4rem; margin-bottom: 16px;
+        }
+        .feature-card h3 { font-size: 1.1rem; font-weight: 700; margin-bottom: 8px; }
+        .feature-card p { color: var(--ink-light); font-size: 0.9rem; line-height: 1.6; }
+
+        /* ── Grid Stats Card ── */
+        .stats-row {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 16px;
+            max-width: 800px; margin: 40px auto 0;
+        }
+        .stat-card {
+            background: var(--card);
+            border-radius: var(--radius);
+            padding: 24px;
+            text-align: center;
+            box-shadow: var(--shadow);
+        }
+        .stat-card .icon { font-size: 1.5rem; margin-bottom: 8px; }
+        .stat-card .num { font-size: 1.6rem; font-weight: 800; color: var(--ink); }
+        .stat-card .desc { font-size: 0.8rem; color: var(--ink-light); margin-top: 4px; }
+
+        /* ── Retrospect Preview ── */
+        .retrospect-section { background: var(--ink); color: white; }
+        .retrospect-section .section-header h2 { color: white; }
+        .retrospect-section .section-header p { color: rgba(255,255,255,0.6); }
+
+        .retrospect-card {
+            max-width: 700px; margin: 0 auto;
+            background: rgba(255,255,255,0.06);
+            border-radius: var(--radius);
+            padding: 40px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .retrospect-card .date-range {
+            font-size: 0.8rem; color: var(--warm-accent);
+            font-weight: 600; margin-bottom: 12px;
+        }
+        .retrospect-card .era-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem; font-weight: 600;
+            margin-bottom: 16px;
+        }
+        .retrospect-card .era-stats {
+            display: flex; gap: 24px; margin-bottom: 20px;
+        }
+        .retrospect-card .era-stat .num { font-size: 1.2rem; font-weight: 700; }
+        .retrospect-card .era-stat .lbl { font-size: 0.75rem; color: rgba(255,255,255,0.5); }
+        .retrospect-card .era-desc {
+            font-size: 0.95rem; line-height: 1.7; color: rgba(255,255,255,0.75);
+            padding-top: 16px; border-top: 1px solid rgba(255,255,255,0.1);
+        }
+
+        /* ── Widget Preview ── */
+        .widget-preview {
+            display: flex; gap: 16px; justify-content: center;
+            flex-wrap: wrap;
+        }
+        .widget-mock {
+            background: var(--card);
+            border-radius: 12px; padding: 20px;
+            box-shadow: var(--shadow);
+            width: 200px; text-align: center;
+        }
+        .widget-mock .mini-grid {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 2px; margin-bottom: 10px;
+        }
+        .widget-mock .mini-grid .mcell { aspect-ratio: 1; border-radius: 2px; }
+        .widget-mock .mini-grid .mcell.past { background: var(--grid-past); }
+        .widget-mock .mini-grid .mcell.present { background: var(--grid-present); }
+        .widget-mock .mini-grid .mcell.future { background: var(--grid-future); }
+
+        .widget-mock .pct { font-size: 1.4rem; font-weight: 800; color: var(--ink); }
+        .widget-mock .pct-label { font-size: 0.75rem; color: var(--ink-light); }
+        .widget-mock .who { font-size: 0.7rem; margin-top: 4px; font-weight: 600; color: var(--ink); }
+
+        /* ── CTA Block ── */
+        .cta-section {
+            text-align: center;
+            padding: 80px 0;
+        }
+        .cta-section h2 { max-width: 700px; margin: 0 auto 16px; }
+        .cta-section p { color: var(--ink-light); margin-bottom: 32px; max-width: 500px; margin-left: auto; margin-right: auto; }
+        .cta-section .btn-primary { font-size: 1.15rem; padding: 18px 40px; }
+
+        /* ── Footer ── */
+        footer {
+            padding: 40px 0;
+            background: var(--card);
+            text-align: center; color: var(--ink-light);
+            font-size: 0.85rem;
+            border-top: 1px solid #E0DDD5;
+        }
+        footer a { color: var(--warm-accent); text-decoration: none; }
+
+        /* ── Responsive ── */
+        @media (max-width: 860px) {
+            .hero-grid { grid-template-columns: 1fr; gap: 40px; text-align: center; }
+            .hero-text .tagline { margin-left: auto; margin-right: auto; }
+            .hero-stats { justify-content: center; }
+            .hero-cta { justify-content: center; }
+            .grid-container { max-width: 360px; }
+            .features-grid { grid-template-columns: 1fr; }
+            .stats-row { grid-template-columns: repeat(2, 1fr); }
+        }
+        @media (max-width: 480px) {
+            .hero-stats { gap: 20px; }
+            .hero-stat .number { font-size: 1.5rem; }
+            .grid-container { padding: 16px; }
+            .life-grid .cell.star::after { font-size: 0.4em; }
+            .stats-row { grid-template-columns: repeat(2, 1fr); }
+            .retrospect-card { padding: 24px; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ════════════════════════════════════════════════ -->
+    <!--  HERO                                             -->
+    <!-- ════════════════════════════════════════════════════ -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-grid">
+                <div class="hero-text">
+                    <p class="pre-title">A Life Visualized with My Tempus</p>
+                    <h1 class="heading-xl">Charlie Munger's<br><span class="highlight">99-Year Journey</span></h1>
+                    <p class="tagline">From a grocery store in Omaha to the vice chair of Berkshire Hathaway — 99 years rendered as an interactive Life Grid. Each cell, one year. Every star, a defining moment.</p>
+
+                    <div class="hero-stats">
+                        <div class="hero-stat">
+                            <div class="number">99</div>
+                            <div class="label">Years Lived</div>
+                        </div>
+                        <div class="hero-stat">
+                            <div class="number">37</div>
+                            <div class="label">Key Moments</div>
+                        </div>
+                        <div class="hero-stat">
+                            <div class="number">6</div>
+                            <div class="label">Life Eras</div>
+                        </div>
+                        <div class="hero-stat">
+                            <div class="number">5</div>
+                            <div class="label">App Views</div>
+                        </div>
+                    </div>
+
+                    <div class="hero-cta">
+                        <a href="https://apps.apple.com/app/id6771795773" class="btn-primary">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
+                            Get My Tempus Free
+                        </a>
+                        <a href="#timeline" class="btn-secondary">Explore His Life ↓</a>
+                    </div>
+                </div>
+
+                <div class="grid-visual">
+                    <div class="grid-container">
+                        <div class="grid-title">
+                            <span>Year View</span>
+                            <span class="years">1924 → 2023</span>
+                        </div>
+                        <div class="grid-legend">
+                            <span><span class="legend-dot" style="background:var(--grid-past)"></span> Past</span>
+                            <span><span class="legend-dot" style="background:var(--grid-present)"></span> Pres.</span>
+                            <span><span class="legend-dot" style="background:var(--grid-future)"></span> Future</span>
+                            <span><span style="color:var(--grid-star);font-weight:700;">★</span> Milestone</span>
+                        </div>
+                        <div class="life-grid" id="mungerGrid">
+                            <!-- 100 cells: past (1924-2023) + future (2024+) -->
+                        </div>
+                        <div class="grid-caption">
+                            Each cell = one year. Hover over the ★ cells to see key moments.
+                            ← Drag to explore · Pinch to zoom →
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ════════════════════════════════════════════════ -->
+    <!--  STATS ROW                                        -->
+    <!-- ════════════════════════════════════════════════════ -->
+    <section class="section" style="padding: 60px 0 20px;">
+        <div class="container">
+            <div class="stats-row">
+                <div class="stat-card">
+                    <div class="icon">🎓</div>
+                    <div class="num">3</div>
+                    <div class="desc">Universities</div>
+                </div>
+                <div class="stat-card">
+                    <div class="icon">🏛️</div>
+                    <div class="num">2</div>
+                    <div class="desc">Law / Investment Firms</div>
+                </div>
+                <div class="stat-card">
+                    <div class="icon">🏢</div>
+                    <div class="num">4</div>
+                    <div class="desc">Board Seats (Key)</div>
+                </div>
+                <div class="stat-card">
+                    <div class="icon">📖</div>
+                    <div class="num">1</div>
+                    <div class="desc">Almanack</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ════════════════════════════════════════════════ -->
+    <!--  TIMELINE                                         -->
+    <!-- ════════════════════════════════════════════════════ -->
+    <section class="section timeline-section" id="timeline">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="heading-lg">37 Moments Across 99 Years</h2>
+                <p>Every milestone entered as a Moment in My Tempus — with photos, moods, tags, and location. Five views to explore them.</p>
+            </div>
+            <div class="timeline">
+
+                <!-- ERA: Youth -->
+                <div class="timeline-era-label">—— Youth & War ——</div>
+
+                <div class="timeline-item">
+                    <div class="dot major"></div>
+                    <div class="year-badge">1924</div>
+                    <h3>Born in Omaha, Nebraska</h3>
+                    <p>Charles Thomas Munger is born on January 1, 1924, to Alfred and Florence Munger. His grandfather was a federal judge; his father was a lawyer and later a Nebraska state senator.</p>
+                    <div class="meta-tags"><span>📍 Omaha, NE</span><span class="mood">🧑‍🍼</span><span>#birth</span></div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="dot"></div>
+                    <div class="year-badge">1941</div>
+                    <h3>Enters University of Michigan</h3>
+                    <p>Studies mathematics at the University of Michigan. Pearl Harbor changes everything — he leaves to serve in World War II.</p>
+                    <div class="meta-tags"><span>📍 Ann Arbor, MI</span><span>#education</span></div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="dot"></div>
+                    <div class="year-badge">1943</div>
+                    <h3>U.S. Army Air Corps Meteorologist</h3>
+                    <p>Serves as a meteorologist in the Army Air Corps during WWII. The Army sends him to Caltech for meteorological training — his first taste of the West Coast.</p>
+                    <div class="meta-tags"><span>📍 Pasadena, CA</span><span class="mood">😤</span><span>#military #WWII</span></div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="dot"></div>
+                    <div class="year-badge">1946</div>
+                    <h3>Harvard Law School — Magna Cum Laude</h3>
+                    <p>Accepts a place at Harvard Law School without an undergraduate degree. Graduates in 1948 with a Juris Doctor, magna cum laude. Harvard's toughness shapes his intellectual rigor.</p>
+                    <div class="meta-tags"><span>📍 Cambridge, MA</span><span class="mood">🤩</span><span>#education #law</span></div>
+                </div>
+
+                <!-- ERA: Professional Rise -->
+                <div class="timeline-era-label">—— The Lawyer ——</div>
+
+                <div class="timeline-item">
+                    <div class="dot"></div>
+                    <div class="year-badge">1948</div>
+                    <h3>Moves to Los Angeles — Practices Law</h3>
+                    <p>Joins the firm Wright & Garrett in Los Angeles. Marries Nancy Huggins. Begins building a reputation as a brilliant, strategic lawyer — one who thinks more like a dealmaker than a litigator.</p>
+                    <div class="meta-tags"><span>📍 Los Angeles, CA</span><span class="mood">😊</span><span>#career</span></div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="dot"></div>
+                    <div class="year-badge">1956</div>
+                    <h3>Meets Nancy Borthwick</h3>
+                    <p>After his divorce, Munger meets Nancy Borthwick. They marry and build a blended family of 9 children (his 3, her 2, and four more together). His commitment to family becomes a lifelong anchor.</p>
+                    <div class="meta-tags"><span class="mood">❤️</span><span>#family</span></div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="dot"></div>
+                    <div class="year-badge">1959</div>
+                    <h3>Dinner That Changed Everything — Meets Warren Buffett</h3>
+                    <p>At a dinner in Omaha, the 35-year-old Munger meets 29-year-old Warren Buffett. They talk for hours and immediately recognize a kindred mind. "We were on the same wavelength immediately." This dinner plants the seed for one of history's greatest financial partnerships.</p>
+                    <div class="meta-tags"><span>📍 Omaha, NE</span><span class="mood">🤩</span><span>#legendary #berkshire #pivotal</span></div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="dot"></div>
+                    <div class="year-badge">1962</div>
+                    <h3>Co-Founds Munger, Tolles & Olson</h3>
+                    <p>Establishes one of Los Angeles's most prestigious law firms, Munger, Tolles & Olson. The firm's culture of intellectual independence and meticulous reasoning reflects Munger's own approach to every problem.</p>
+                    <div class="meta-tags"><span>📍 Los Angeles, CA</span><span>#career #law</span></div>
+                </div>
+
+                <!-- ERA: Investment -->
+                <div class="timeline-era-label">—— The Investor ——</div>
+
+                <div class="timeline-item">
+                    <div class="dot"></div>
+                    <div class="year-badge">1962</div>
+                    <h3>Launches Investment Partnership</h3>
+                    <p>Simultaneously with the law firm, Munger starts an investment partnership — directly paralleling Buffett's partnership in the 1950s. He begins deploying his version of value investing with a twist: willing to pay fair prices for wonderful businesses.</p>
+                    <div class="meta-tags"><span>📍 Los Angeles, CA</span><span class="mood">😌</span><span>#investing</span></div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="dot major"></div>
+                    <div class="year-badge">1972</div>
+                    <h3>See's Candies — The Paradigm Shift</h3>
+                    <p>The single most important investment decision of his and Buffett's lives. Munger convinces Buffett to pay $25 million for See's Candies — 3× book value — violating Graham's "cigar butt" principle. The $40M earned from See's over decades funds Berkshire's entire subsequent empire. Munger calls it "the paradigm shift" that taught them the power of a moat.</p>
+                    <div class="meta-tags"><span>📍 San Francisco, CA</span><span class="mood">🤩</span><span>#berkshire #pivotal #investing</span></div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="dot"></div>
+                    <div class="year-badge">1975</div>
+                    <h3>Joins Berkshire Hathaway — Vice Chairman</h3>
+                    <p>Munger formally joins Berkshire Hathaway as Vice Chairman. His role is not operational — he is Buffett's sounding board, strategic foil, and intellectual conscience. "Charlie can't be beat at seeing what's wrong with an idea before you even finish describing it."</p>
+                    <div class="meta-tags"><span>📍 Omaha, NE</span><span class="mood">😊</span><span>#berkshire #career</span></div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="dot"></div>
+                    <div class="year-badge">1977</div>
+                    <h3>Chairman of Blue Chip Stamps</h3>
+                    <p>Takes the helm of Blue Chip Stamps, a Berkshire-controlled company. Demonstrates his ability to manage and restructure businesses — not just evaluate them from the outside.</p>
+                    <div class="meta-tags"><span>#berkshire #management</span></div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="dot"></div>
+                    <div class="year-badge">1984</div>
+                    <h3>Chairman of Wesco Financial</h3>
+                    <p>Becomes Chairman of Wesco Financial, a Berkshire subsidiary. Munger runs annual meetings so idiosyncratic and insightful that Wesco's become a must-attend for value investors until its merger into Berkshire in 2011.</p>
+                    <div class="meta-tags"><span>📍 Pasadena, CA</span><span class="mood">😌</span><span>#berkshire #investing</span></div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="dot"></div>
+                    <div class="year-badge">1986</div>
+                    <h3>Wesco Annual Meeting — "The Psychology of Human Misjudgment"</h3>
+                    <p>Delivers his first formal talk on cognitive biases at the Wesco annual meeting — the embryonic version of what would become his legendary "Psychology of Human Misjudgment." This becomes his signature intellectual contribution beyond investing.</p>
+                    <div class="meta-tags"><span>📍 Pasadena, CA</span><span class="mood">🤩</span><span>#psychology #philosophy #pivotal</span></div>
+                </div>
+
+                <!-- ERA: Influence -->
+                <div class="timeline-era-label">—— The Sage ——</div>
+
+                <div class="timeline-item">
+                    <div class="dot"></div>
+                    <div class="year-badge">1990</div>
+                    <h3>Chairman of Daily Journal Corporation</h3>
+                    <p>Takes the Chairmanship of Daily Journal Corp, a legal publishing and software company. He leads it with characteristic independence — buying securities during the 2008 crisis that would later deliver enormous returns.</p>
+                    <div class="meta-tags"><span>📍 Los Angeles, CA</span><span>#media #investing</span></div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="dot"></div>
+                    <div class="year-badge">1997</div>
+                    <h3>Joins Costco Board of Directors</h3>
+                    <p>Joins the board of Costco Wholesale. Serves alongside founder Jim Sinegal and later CEO Craig Jelinek. Munger's emphasis on culture, efficiency, and long-term thinking finds a perfect match in Costco's operating philosophy. He serves for 25+ years.</p>
+                    <div class="meta-tags"><span>📍 Issaquah, WA</span><span class="mood">😊</span><span>#board #retail</span></div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="dot major"></div>
+                    <div class="year-badge">2005</div>
+                    <h3>Poor Charlie's Almanack Published</h3>
+                    <p>Peter Kaufman compiles Munger's speeches and writings into "Poor Charlie's Almanack." The book — named consciously after Ben Franklin's Poor Richard's Almanack — distills Munger's worldly wisdom on mental models, psychology, investing, and life. It becomes a cult classic and later a mainstream bestseller, especially among a new generation of tech investors.</p>
+                    <div class="meta-tags"><span class="mood">📖</span><span>#philosophy #book #pivotal</span></div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="dot"></div>
+                    <div class="year-badge">2008</div>
+                    <h3>The BYD Investment — "Munger's China Bet"</h3>
+                    <p>Munger personally champions a $230M investment in BYD, a Chinese battery and auto company, through Berkshire subsidiary MidAmerican Energy. It's his deal from start to finish. 15 years later, the stake is worth over $8 billion — one of Berkshire's most successful international investments and a vindication of his independent thinking.</p>
+                    <div class="meta-tags"><span>📍 Shenzhen, China</span><span class="mood">🤩</span><span>#berkshire #BYD #investing #pivotal</span></div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="dot"></div>
+                    <div class="year-badge">2010</div>
+                    <h3>Defined as "The Complete Investor"</h3>
+                    <p>Tren Griffin publishes "Charlie Munger: The Complete Investor," a systematic analysis of Munger's investment framework. The book crystallizes his philosophy for a generation of value investors and helps spread his ideas beyond Berkshire's orbit.</p>
+                    <div class="meta-tags"><span class="mood">📖</span><span>#investing #philosophy</span></div>
+                </div>
+
+                <!-- ERA: Endgame -->
+                <div class="timeline-era-label">—— The Final Chapter ——</div>
+
+                <div class="timeline-item">
+                    <div class="dot"></div>
+                    <div class="year-badge">2014</div>
+                    <h3>90th Birthday — Still at the Table</h3>
+                    <p>Turns 90 with his mind as sharp as ever. Still attending every Berkshire board meeting and Daily Journal shareholder meeting. The 2014 Daily Journal meeting includes one of his most-quoted lines: "If you keep your life on track, the inevitable difficulties that come to everybody will be much easier to bear."</p>
+                    <div class="meta-tags"><span class="mood">😊</span><span>#milestone</span></div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="dot"></div>
+                    <div class="year-badge">2020</div>
+                    <h3>Steps Down as Daily Journal Chairman</h3>
+                    <p>At age 96, steps down as Chairman of Daily Journal Corp after 30 years at the helm. Even in retirement, his investment decisions for the Journal's portfolio continue to be studied by value investors worldwide.</p>
+                    <div class="meta-tags"><span class="mood">😌</span><span>#retirement</span></div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="dot"></div>
+                    <div class="year-badge">2022</div>
+                    <h3>Last Public Interview — CNBC</h3>
+                    <p>Gives his last major interview to CNBC's Becky Quick. At 98, his mind remains sharp and contrarian. He discusses BYD, Costco, Berkshire, and the future of investing — with characteristic directness and no filter.</p>
+                    <div class="meta-tags"><span class="mood">🤩</span><span>#media</span></div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="dot major"></div>
+                    <div class="year-badge">2023</div>
+                    <h3>Passes at 99 — A Life Complete</h3>
+                    <p>Charlie Munger dies peacefully on November 28, 2023, at Santa Barbara Cottage Hospital, just 34 days short of his 100th birthday. His 99-year life — spanning the Great Depression, WWII, the Cold War, the rise of Silicon Valley, and the AI era — is marked by an extraordinary combination of intellectual rigor, moral clarity, and a legendary partnership that reshaped investing forever.</p>
+                    <div class="meta-tags"><span>📍 Santa Barbara, CA</span><span class="mood">😢</span><span>#berkshire #legacy</span></div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- ════════════════════════════════════════════════ -->
+    <!--  RETROSPECT PREVIEW                               -->
+    <!-- ════════════════════════════════════════════════════ -->
+    <section class="section retrospect-section">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="heading-lg">Retrospect — Immersive Auto-Recaps</h2>
+                <p>My Tempus composes any life's moments into cinematic, full-screen recaps with transitions, progress bars, and ambient music. One tap turns a timeline into a story.</p>
+            </div>
+            <div class="retrospect-card">
+                <div class="date-range">1924 – 1962</div>
+                <div class="era-title">Youth & The Rise</div>
+                <div class="era-stats">
+                    <div class="era-stat"><div class="num">38</div><div class="lbl">Years</div></div>
+                    <div class="era-stat"><div class="num">2</div><div class="lbl">Wars </div></div>
+                    <div class="era-stat"><div class="num">7</div><div class="lbl">Milestones</div></div>
+                </div>
+                <div class="era-desc">
+                    From a lawyer's son in Omaha to Harvard Law and a Los Angeles practice — Munger's first 38 years laid the foundation. Meeting Warren Buffett in 1959 changed everything. But in My Tempus, that dinner isn't just a story — it's a Moment with a mood, tags, and a location you can tap to explore. Every Retrospect recaps these eras as auto-playing slideshows.
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ════════════════════════════════════════════════ -->
+    <!--  FEATURES SHOWCASE                                -->
+    <!-- ════════════════════════════════════════════════════ -->
+    <section class="section">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="heading-lg">5 Ways to Explore a Life</h2>
+                <p>Every Moment you enter unlocks five views. Here's how Munger's story looks in each.</p>
+            </div>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">📋</div>
+                    <h3>List View</h3>
+                    <p>37 moments in chronological order. Full-text search, date filters, and a calendar jump button. Search "Omaha" and find every connection to his hometown.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🗓️</div>
+                    <h3>Calendar View</h3>
+                    <p>A month grid with dots on every day that holds a memory. Scroll through 99 years of his life — from the 1920s through the 2020s — and see the density of his journey.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🌍</div>
+                    <h3>Map View</h3>
+                    <p>Every moment plotted on an interactive world map. Omaha → Ann Arbor → Pasadena → Cambridge → LA → San Francisco → Shenzhen. One glance shows a life lived across continents.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🖼️</div>
+                    <h3>Photos View</h3>
+                    <p>A visual diary — all attached photos in a scrollable, filterable grid. Munger's life transitions from black-and-white portraits to modern digital photography within the same timeline.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">📊</div>
+                    <h3>Statistics View</h3>
+                    <p>Emotional patterns over time — which decade had the most joyful moments? Which era was shaped by challenge? Mood analysis across 99 years reveals the rhythm of a remarkable life.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🧩</div>
+                    <h3>6 Widgets</h3>
+                    <p>Add Munger's Life Progress, Grid mini-map, Ring stats, Calendar heatmap, Events countdowns or Composite dashboard to your Home Screen. Always visible.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ════════════════════════════════════════════════ -->
+    <!--  WIDGET PREVIEW                                    -->
+    <!-- ════════════════════════════════════════════════════ -->
+    <section class="section" style="padding-top: 0;">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="heading-lg">His Life at a Glance — On Your Screen</h2>
+                <p>Six widget types keep Munger's stats visible without opening the app.</p>
+            </div>
+            <div class="widget-preview">
+                <div class="widget-mock">
+                    <div class="mini-grid">
+                        <div class="mcell past"></div><div class="mcell past"></div><div class="mcell past"></div><div class="mcell past"></div><div class="mcell past"></div>
+                        <div class="mcell past"></div><div class="mcell past"></div><div class="mcell past"></div><div class="mcell past"></div><div class="mcell past"></div>
+                        <div class="mcell past"></div><div class="mcell past"></div><div class="mcell past"></div><div class="mcell past"></div><div class="mcell past"></div>
+                        <div class="mcell past"></div><div class="mcell past"></div><div class="mcell past"></div><div class="mcell past"></div><div class="mcell present"></div>
+                        <div class="mcell future"></div><div class="mcell future"></div><div class="mcell future"></div><div class="mcell future"></div><div class="mcell future"></div>
+                    </div>
+                    <div class="pct">99%</div>
+                    <div class="pct-label">Life Lived</div>
+                    <div class="who">Charlie Munger</div>
+                </div>
+                <div class="widget-mock">
+                    <div class="pct">1924</div>
+                    <div class="pct-label">Birth Year</div>
+                    <div class="who" style="margin-top:12px;">⬤⬤⬤⬤⬤ Era density</div>
+                </div>
+                <div class="widget-mock">
+                    <div class="pct">37</div>
+                    <div class="pct-label">Moments</div>
+                    <div class="who" style="margin-top:12px;">6 eras captured</div>
+                </div>
+                <div class="widget-mock">
+                    <div class="pct">3</div>
+                    <div class="pct-label">Templates</div>
+                    <div class="who" style="margin-top:12px;">Grid styles used</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ════════════════════════════════════════════════ -->
+    <!--  WALLPAPER                                         -->
+    <!-- ════════════════════════════════════════════════════ -->
+    <section class="section" style="background: linear-gradient(180deg, var(--page) 0%, var(--warm-light) 100%);">
+        <div class="container" style="text-align:center;">
+            <div class="section-header">
+                <h2 class="heading-lg">His Life as Lock Screen Art</h2>
+                <p>My Tempus turns any life into a custom wallpaper — Munger's 99-year grid becomes a lock screen you can generate and set in one tap.</p>
+            </div>
+            <div style="display:flex;gap:16px;justify-content:center;flex-wrap:wrap;">
+                <div style="background:var(--ink);color:white;border-radius:var(--radius);padding:24px 32px;width:240px;">
+                    <div style="font-size:0.7rem;opacity:0.5;margin-bottom:8px;">Minimal Style</div>
+                    <div style="font-size:2rem;font-weight:800;">99%</div>
+                    <div style="opacity:0.6;font-size:0.8rem;">Charlie Munger</div>
+                    <div style="font-size:1.5rem;margin-top:8px;">1924-2023</div>
+                </div>
+                <div style="background:var(--card);border-radius:var(--radius);padding:24px 32px;width:240px;box-shadow:var(--shadow);">
+                    <div style="font-size:0.7rem;color:var(--ink-light);margin-bottom:8px;">Data Style</div>
+                    <div style="display:grid;grid-template-columns:repeat(5,1fr);gap:2px;margin-bottom:8px;">
+                        <div style="aspect-ratio:1;background:var(--grid-past);border-radius:2px;"></div>
+                        <div style="aspect-ratio:1;background:var(--grid-past);border-radius:2px;"></div>
+                        <div style="aspect-ratio:1;background:var(--grid-past);border-radius:2px;"></div>
+                        <div style="aspect-ratio:1;background:var(--grid-past);border-radius:2px;"></div>
+                        <div style="aspect-ratio:1;background:var(--grid-present);border-radius:2px;"></div>
+                        <div style="aspect-ratio:1;background:var(--grid-future);border-radius:2px;"></div>
+                        <div style="aspect-ratio:1;background:var(--grid-future);border-radius:2px;"></div>
+                        <div style="aspect-ratio:1;background:var(--grid-future);border-radius:2px;"></div>
+                        <div style="aspect-ratio:1;background:var(--grid-future);border-radius:2px;"></div>
+                        <div style="aspect-ratio:1;background:var(--grid-future);border-radius:2px;"></div>
+                    </div>
+                    <div style="font-size:0.7rem;color:var(--ink-light);">Mini grid · Cell = decade</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ════════════════════════════════════════════════ -->
+    <!--  HOW IT WORKS                                      -->
+    <!-- ════════════════════════════════════════════════════ -->
+    <section class="section">
+        <div class="container" style="max-width:900px;">
+            <div class="section-header">
+                <h2 class="heading-lg">How This Page Was Built</h2>
+                <p>Every moment on this page was created in My Tempus — just like you would for anyone in your life.</p>
+            </div>
+            <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:24px;">
+                <div style="text-align:center;padding:24px;">
+                    <div style="font-size:2rem;margin-bottom:12px;">1.</div>
+                    <h3 style="font-size:1.05rem;font-weight:700;margin-bottom:8px;">Create a Companion</h3>
+                    <p style="color:var(--ink-light);font-size:0.9rem;">Add Charlie Munger as a Custom companion. Set birth date: 1924. Lifespan: 99 years.</p>
+                </div>
+                <div style="text-align:center;padding:24px;">
+                    <div style="font-size:2rem;margin-bottom:12px;">2.</div>
+                    <h3 style="font-size:1.05rem;font-weight:700;margin-bottom:8px;">Record 37 Moments</h3>
+                    <p style="color:var(--ink-light);font-size:0.9rem;">Each key life event becomes a Moment with content, mood, tags, location, and photos. Batch entry takes minutes.</p>
+                </div>
+                <div style="text-align:center;padding:24px;">
+                    <div style="font-size:2rem;margin-bottom:12px;">3.</div>
+                    <h3 style="font-size:1.05rem;font-weight:700;margin-bottom:8px;">Explore 5 Views</h3>
+                    <p style="color:var(--ink-light);font-size:0.9rem;">The Life Grid renders automatically. Timeline, Calendar, Map, Photos, Statistics — all populated by your moments.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ════════════════════════════════════════════════ -->
+    <!--  CTA                                               -->
+    <!-- ════════════════════════════════════════════════════ -->
+    <section class="cta-section" style="background: linear-gradient(135deg, var(--page), var(--warm-light));">
+        <div class="container">
+            <h2 class="heading-lg">Your Life Is Worth Seeing, Too</h2>
+            <p>If 99 years of Charlie Munger fits on a screen you can swipe through — imagine what your story looks like.</p>
+            <a href="https://apps.apple.com/app/id6771795773" class="btn-primary">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
+                Get My Tempus Free
+            </a>
+            <p style="margin-top:16px;font-size:0.85rem;">Free: 2 companions, 2 moments, 3 wallpapers/day. Pro unlocks unlimited everything.</p>
+        </div>
+    </section>
+
+    <!-- ════════════════════════════════════════════════ -->
+    <!--  FOOTER                                            -->
+    <!-- ════════════════════════════════════════════════════ -->
+    <footer>
+        <div class="container">
+            <p>© 2026 Jun Huang. All Rights Reserved.</p>
+            <p style="margin-top:8px;">
+                <a href="Tempus%20Privacy%20Policy.html">Privacy Policy</a> ·
+                <a href="Tempus%20Terms%20of%20Service.html">Terms of Service</a> ·
+                <a href="Tempus%20Support.html">Support</a> ·
+                <a href="index.html">Main Landing</a>
+            </p>
+            <p style="margin-top:12px;font-size:0.8rem;color:#999;">My Tempus is available exclusively on the Apple App Store.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Build the interactive Life Grid for Munger (1924-2023)
+        (function buildGrid() {
+            const grid = document.getElementById('mungerGrid');
+            if (!grid) return;
+
+            const milestones = {
+                1924: 'Born in Omaha',
+                1941: 'Univ. of Michigan',
+                1943: 'Army Air Corps',
+                1946: 'Harvard Law',
+                1948: 'LA Law Practice',
+                1959: 'Meets Buffett ★',
+                1962: 'Munger, Tolles & Olson',
+                1972: 'See\'s Candies ★',
+                1975: 'Berkshire Vice Chair',
+                1986: 'Human Misjudgment',
+                1997: 'Costco Board',
+                2005: 'Poor Charlie\'s Almanack',
+                2008: 'BYD Investment ★',
+                2023: 'Passes at 99'
+            };
+
+            for (let year = 1924; year <= 2024; year++) {
+                const cell = document.createElement('div');
+                const group = document.createElement('div');
+                group.className = 'cell-group';
+
+                if (year < 2023) cell.className = 'cell past';
+                else if (year === 2023) cell.className = 'cell present';
+                else cell.className = 'cell future';
+
+                if (milestones[year]) {
+                    cell.classList.add('star');
+                    const tooltip = document.createElement('div');
+                    tooltip.className = 'cell-tooltip';
+                    tooltip.textContent = `${year}: ${milestones[year]}`;
+                    group.appendChild(tooltip);
+
+                    // Make extra room for the 1959 tooltip
+                    if (year === 1959) tooltip.style.whiteSpace = 'normal';
+                }
+
+                group.appendChild(cell);
+                grid.appendChild(group);
+            }
+        })();
+    </script>
+
+</body>
+</html>
