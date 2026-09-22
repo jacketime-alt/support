@@ -3,3 +3,4 @@ User-agent: *
 Allow: /
 
 Sitemap: https://jacketime-alt.github.io/support/Tempus/sitemap.xml
+Sitemap: https://jacketime-alt.github.io/support/FurBaby/sitemap.xml
