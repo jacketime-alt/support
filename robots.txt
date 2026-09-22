@@ -1,0 +1,5 @@
+# robots.txt for jacketime-alt.github.io/support/
+User-agent: *
+Allow: /
+
+Sitemap: https://jacketime-alt.github.io/support/Tempus/sitemap.xml
