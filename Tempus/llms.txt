@@ -5,14 +5,14 @@
 ## Product
 - Platform: iOS 17.0+, iPhone, Apple Watch (watchOS 10+)
 - Price: Free, with optional Pro (Monthly or Yearly subscription with a 7-day free trial, or a one-time Lifetime purchase)
-- Privacy: local-first; no analytics or tracking. The only optional network feature is a bring-your-own-key AI assistant that sends the text you submit to the provider you choose.
+- Privacy: local-first; no analytics or tracking. The only optional network features are a bring-your-own-key AI assistant that sends the text you submit to the provider you choose, and location search that may send your query to a geocoding service.
 - App Store: https://apps.apple.com/app/id6771795773
 
 ## Core features
 - Interactive Life Grid — 13 built-in templates (4 free), Day/Week/Month/Year granularity, custom templates
-- Rich moment timeline — List, Calendar, Map, Photos, and Statistics views
+- Rich moment timeline — List, Calendar, Year, Map, Photos, and Statistics views
 - Retrospect — automatic recaps (weekly, monthly, streak milestones, birthdays, completed countdowns) with background music, shareable as cards
-- Story mode — full-screen, auto-advancing playback of your highlights
+- Story mode — full-screen, configurable playback (sort, moment count, transition, loop, music) of your highlights
 - Event timers — countdown or elapsed, custom icons and colors, on the grid and in widgets
 - Companions — track people and pets, each with species-specific lifespans
 - Data wallpapers — 3 styles, 5 layouts, device-adaptive
