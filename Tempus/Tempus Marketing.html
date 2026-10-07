@@ -223,6 +223,43 @@
         .why-item p {
             color: var(--text-gray);
         }
+        /* Screenshots */
+        .screenshots {
+            padding: 60px 0;
+        }
+        .screenshot-scroll {
+            display: flex;
+            gap: 20px;
+            overflow-x: auto;
+            padding: 20px 4px;
+            scrollbar-width: none;
+        }
+        .screenshot-scroll::-webkit-scrollbar { display: none; }
+        .screenshot-item {
+            flex-shrink: 0;
+            width: 220px;
+            background-color: var(--bg-white);
+            border-radius: 20px;
+            padding: 8px;
+            box-shadow: var(--shadow);
+            transition: transform 0.3s ease;
+        }
+        .screenshot-item:hover {
+            transform: translateY(-5px);
+        }
+        .screenshot-item img {
+            width: 100%;
+            height: auto;
+            border-radius: 14px;
+            display: block;
+        }
+        .screenshot-label {
+            text-align: center;
+            padding: 12px 8px 4px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: var(--primary);
+        }
         /* Pricing */
         .pricing {
             padding: 60px 0;
@@ -355,6 +392,7 @@
             .hero .subtitle { font-size: 1.1rem; }
             .section-title { font-size: 1.6rem; }
             .features-grid, .pricing-grid { grid-template-columns: 1fr; }
+            .screenshot-item { width: 180px; }
             .pricing-card.featured { transform: none; }
             .footer-links a { display: block; margin: 10px 0; }
         }
@@ -435,6 +473,47 @@
                     <div class="feature-icon">🎨</div>
                     <h3>Personalized & Private</h3>
                     <p>4 themes: System, Light, Dark, and Sepia. Customizable icons and colors for every event and companion. All data stored locally on your device — no accounts, no cloud, no tracking. Your life data is yours alone. An <strong>optional AI assistant</strong> (off by default, uses your own API key) can turn a sentence into a moment, event, or companion when you want the shortcut.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="screenshots">
+        <div class="container">
+            <h2 class="section-title">See It In Action</h2>
+            <p class="section-subtitle">A calm, visual way to watch your life add up — day by day, moment by moment.</p>
+            <div class="screenshot-scroll">
+                <div class="screenshot-item">
+                    <img src="assets/lifegrid.png" width="800" height="1731" alt="My Tempus Life Grid on iPhone" loading="lazy">
+                    <div class="screenshot-label">Life Grid</div>
+                </div>
+                <div class="screenshot-item">
+                    <img src="assets/retrospect.png" width="800" height="1731" alt="My Tempus Retrospect recap" loading="lazy">
+                    <div class="screenshot-label">Retrospect</div>
+                </div>
+                <div class="screenshot-item">
+                    <img src="assets/ai-create.png" width="800" height="1731" alt="My Tempus AI creating a moment" loading="lazy">
+                    <div class="screenshot-label">AI Assist</div>
+                </div>
+                <div class="screenshot-item">
+                    <img src="assets/photos.png" width="800" height="1731" alt="My Tempus photo diary" loading="lazy">
+                    <div class="screenshot-label">Photo Diary</div>
+                </div>
+                <div class="screenshot-item">
+                    <img src="assets/calendar.png" width="800" height="1731" alt="My Tempus calendar view" loading="lazy">
+                    <div class="screenshot-label">Calendar</div>
+                </div>
+                <div class="screenshot-item">
+                    <img src="assets/events.png" width="800" height="1731" alt="My Tempus event timers" loading="lazy">
+                    <div class="screenshot-label">Event Timers</div>
+                </div>
+                <div class="screenshot-item">
+                    <img src="assets/wallpaper.jpg" width="800" height="1734" alt="My Tempus data wallpaper" loading="lazy">
+                    <div class="screenshot-label">Wallpapers</div>
+                </div>
+                <div class="screenshot-item">
+                    <img src="assets/companions.png" width="800" height="1731" alt="My Tempus companions and pets" loading="lazy">
+                    <div class="screenshot-label">Companions</div>
                 </div>
             </div>
         </div>
