@@ -40,6 +40,7 @@
         "author": { "@type": "Person", "name": "Jun Huang" },
         "offers": [
             { "@type": "Offer", "price": "0", "priceCurrency": "USD", "name": "Free" },
+            { "@type": "Offer", "price": "5.99", "priceCurrency": "USD", "name": "Monthly Pro" },
             { "@type": "Offer", "price": "39.99", "priceCurrency": "USD", "name": "Yearly Pro" },
             { "@type": "Offer", "price": "79.99", "priceCurrency": "USD", "name": "Lifetime" }
         ]
@@ -59,7 +60,7 @@
             {
                 "@type": "Question",
                 "name": "Is My Tempus free to use?",
-                "acceptedAnswer": { "@type": "Answer", "text": "Yes. The free tier includes 2 companions, 2 moments, 2 event timers, 3 wallpapers per day, and Small + Lock Screen widgets. Pro upgrades unlock unlimited everything with optional one-time Lifetime purchase." }
+                "acceptedAnswer": { "@type": "Answer", "text": "Yes. The free tier includes 2 companions, 2 moments, 2 event timers, 3 wallpapers per day, and Small + Lock Screen widgets. Pro unlocks unlimited everything with three upgrade options: Monthly ($5.99/mo), Yearly ($39.99/yr, best value), or one-time Lifetime ($79.99). Monthly and Yearly auto-renew and can be canceled anytime." }
             },
             {
                 "@type": "Question",
@@ -430,9 +431,9 @@
 
         .pricing-grid {
             display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 24px;
-            max-width: 900px;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+            max-width: 1160px;
             margin: 0 auto;
         }
 
@@ -517,6 +518,9 @@
         }
 
         /* Responsive */
+        @media (max-width: 1024px) {
+            .pricing-grid { grid-template-columns: repeat(2, 1fr); }
+        }
         @media (max-width: 768px) {
             .hero-content {
                 grid-template-columns: 1fr;
@@ -721,10 +725,25 @@
                     </ul>
                     <a href="https://apps.apple.com/app/id6771795773" class="btn-secondary" style="width:100%;justify-content:center;">Get Started Free</a>
                 </div>
+                <div class="pricing-card">
+                    <h3>Monthly Pro</h3>
+                    <div class="price">$5.99</div>
+                    <div class="price-period">per month</div>
+                    <ul class="pricing-features">
+                        <li>Unlimited companions</li>
+                        <li>Unlimited moments & timers</li>
+                        <li>Unlimited wallpapers</li>
+                        <li>Premium layouts & themes</li>
+                        <li>All widget sizes</li>
+                        <li>Auto wallpaper daily</li>
+                        <li>7-day free trial</li>
+                    </ul>
+                    <a href="https://apps.apple.com/app/id6771795773" class="btn-secondary" style="width:100%;justify-content:center;">Start Free Trial</a>
+                </div>
                 <div class="pricing-card popular">
                     <h3>Yearly Pro</h3>
                     <div class="price">$39.99</div>
-                    <div class="price-period">per year · Save 44%</div>
+                    <div class="price-period">per year · Save 44% vs monthly</div>
                     <ul class="pricing-features">
                         <li>Unlimited companions</li>
                         <li>Unlimited moments & timers</li>
@@ -766,7 +785,7 @@
                 </div>
                 <div style="background: white; border-radius: 16px; padding: 28px 32px; box-shadow: var(--shadow);">
                     <h3 style="font-size: 1.15rem; font-weight: 700; margin-bottom: 8px;">Is My Tempus free?</h3>
-                    <p style="color: var(--text-secondary); font-size: 0.95rem; line-height: 1.7;">Yes. The free tier includes 2 companions, 2 moments per companion, 2 event timers, 3 wallpapers per day, and Small + Lock Screen widgets. Pro unlocks unlimited everything with optional <strong>one-time Lifetime purchase</strong> ($79.99) — no subscription trap.</p>
+                    <p style="color: var(--text-secondary); font-size: 0.95rem; line-height: 1.7;">Yes. The free tier includes 2 companions, 2 moments, 2 event timers, 3 wallpapers per day, and Small + Lock Screen widgets. Pro unlocks unlimited everything with three upgrade options: <strong>Monthly</strong> ($5.99/mo), <strong>Yearly</strong> ($39.99/yr — best value), or a <strong>one-time Lifetime</strong> purchase ($79.99). Monthly and Yearly auto-renew and can be canceled anytime.</p>
                 </div>
                 <div style="background: white; border-radius: 16px; padding: 28px 32px; box-shadow: var(--shadow);">
                     <h3 style="font-size: 1.15rem; font-weight: 700; margin-bottom: 8px;">Does My Tempus work offline?</h3>
