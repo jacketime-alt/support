@@ -53,10 +53,13 @@
             <li>Audio segments, marks, pause and interruption gaps, and transfer status</li>
             <li>On-device transcripts, speaker labels you rename, and the local search index</li>
             <li>Day reviews, hour summaries, and remembered facts you save</li>
+            <li>Follow-ups, their completed history, daily-improvement commitments, and weekly/monthly reviews</li>
+            <li>Live Activity status text shown on the Lock Screen or Dynamic Island while transcription runs</li>
             <li>Optional body and place labels derived on device from data you allow</li>
             <li>App settings, including language and quiet hours</li>
         </ul>
         <p>You can delete audio or days in the App, and you can export a plain (unencrypted) package through the system share sheet. Uninstalling the App removes the local archive from that device. A bring-your-own-key API key, if you save one, is stored in the iOS Keychain on your device and is not sent to us.</p>
+        <p><strong>Retention.</strong> By default, original audio is kept for 30 days, text for 365 days, and raw coordinates for 365 days. You can change each window in Settings, including keeping it forever. Deletion is confirmed in the App before it runs.</p>
     </section>
 
     <section>
@@ -80,7 +83,7 @@
         <h2>5. Optional AI</h2>
         <p>Recording, on-device transcription, and local search work without an AI provider. Day review and chat are optional.</p>
         <h3>5.1 Apple Intelligence</h3>
-        <p>If you select Apple Intelligence, the App sends the text needed for that review or chat — transcript excerpts and condensed context such as remembered facts or place and body labels you enabled — to Apple's Foundation Models. Processing may happen on your device or through Apple Intelligence, under <a href="https://www.apple.com/legal/privacy/" target="_blank">Apple's Privacy Policy</a>. We do not receive that text. Audio is not sent for this feature.</p>
+        <p>If you select Apple Intelligence, the App sends the text needed for that review or chat — transcript excerpts and condensed context such as remembered facts, follow-up or improvement text, or place and body labels you enabled — to Apple's Foundation Models. Processing may happen on your device or through Apple Intelligence, under <a href="https://www.apple.com/legal/privacy/" target="_blank">Apple's Privacy Policy</a>. We do not receive that text. Audio is not sent for this feature.</p>
         <h3>5.2 Your own API key</h3>
         <p>If you select a bring-your-own-key provider, you enter an endpoint, model, and API key. The key stays in the Keychain. A connection check, and later review or chat requests, go <strong>directly from your device to the endpoint you configured</strong>. We do not operate a relay and we do not receive the key, the prompt, or the reply.</p>
         <ul>

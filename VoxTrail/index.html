@@ -4,8 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>VoxTrail — Help & Support</title>
-    <meta name="description" content="Get help with VoxTrail, the local-first Apple Watch life recorder. Browse frequently asked questions about recording, on-device transcription, speaker labels, semantic search, day review, the optional AI, and subscriptions.">
-    <meta name="keywords" content="VoxTrail help, VoxTrail support, voice recorder help, Apple Watch recorder FAQ, transcription app help, semantic search, day review, bring your own key">
+    <meta name="description" content="Get help with VoxTrail, the local-first Apple Watch life recorder: recording, on-device transcription, speaker labels, semantic search, follow-ups, place trail, day/week/month reviews, the optional AI, subscriptions, and export.">
+    <meta name="keywords" content="VoxTrail help, VoxTrail support, voice recorder help, Apple Watch recorder FAQ, on-device transcription help, semantic search, follow-ups, place trail, day review, weekly review, bring your own key">
 
     <!-- OpenGraph -->
     <meta property="og:title" content="VoxTrail — Help & Support">
@@ -20,10 +20,91 @@
 
     <!-- Canonical -->
     <link rel="canonical" href="https://jacketime-alt.github.io/support/VoxTrail/">
+    <meta name="robots" content="index, follow">
 
     <!-- AI crawler -->
-    <meta name="ai-description" content="Official help and FAQ for VoxTrail, a local-first, privacy-first all-day life recorder for iPhone and Apple Watch (iOS 18+, watchOS 11+). Covers recording, on-device transcription, speaker labels, semantic search, day review, chat, the optional Apple Intelligence or bring-your-own-key AI, subscriptions, and export.">
-    <meta name="ai-use-cases" content="starting a recording on Apple Watch, understanding on-device transcription, labeling speakers, searching your archive, running a day review, configuring Apple Intelligence or a bring-your-own-key provider, restoring or canceling a subscription, exporting your data">
+    <meta name="ai-description" content="Official help and FAQ for VoxTrail, a local-first, privacy-first all-day life recorder for iPhone and Apple Watch (iOS 18+, watchOS 11+). Covers recording, on-device transcription, speaker labels, semantic search, follow-ups, place trail, day/week/month reviews, chat, the optional Apple Intelligence or bring-your-own-key AI, subscriptions, and export.">
+    <meta name="ai-use-cases" content="starting a recording on Apple Watch, understanding on-device transcription, labeling speakers, searching your archive, finding a completed follow-up, mapping your day, running a day or week review, configuring Apple Intelligence or a bring-your-own-key provider, restoring or canceling a subscription, exporting your data">
+    <script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+        {
+            "@type": "Question",
+            "name": "What is VoxTrail?",
+            "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "VoxTrail is a local-first all-day life recorder for iPhone and Apple Watch. It records your day, transcribes audio on device, indexes it for semantic search, maps where the day happened, and composes an optional private AI review. It is not a social network or a cloud journal."
+            }
+        },
+        {
+            "@type": "Question",
+            "name": "How does recording work?",
+            "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Start capture from your Apple Watch or iPhone and let it run through the day. Marks, pauses, interruptions, and quiet hours are handled as they happen; Watch recordings transfer to the iPhone over Watch Connectivity."
+            }
+        },
+        {
+            "@type": "Question",
+            "name": "How does on-device transcription work and which languages are supported?",
+            "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Transcription runs on device with local speech models; no audio is uploaded. The built-in engine supports Chinese, English, Japanese, Korean, Cantonese, and Auto; the optional High Accuracy engine covers about 100 languages; Apple's system model is available on iOS 26+ when installed."
+            }
+        },
+        {
+            "@type": "Question",
+            "name": "What are speaker labels?",
+            "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "On-device voiceprint recognition separates who said what and refines long single-speaker spans into readable turns. You can rename speakers, and labels stay consistent across the day."
+            }
+        },
+        {
+            "@type": "Question",
+            "name": "What is semantic search?",
+            "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Semantic search finds moments by meaning across your local archive and links each result back to the source audio. Embeddings and queries stay on the device."
+            }
+        },
+        {
+            "@type": "Question",
+            "name": "How do follow-ups work, and where do completed items go?",
+            "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Follow-ups surface intentions and open loops from recorded hours. Calendar and Reminders writes require per-item confirmation. Completed items remain in the 已完成 / 已关闭 history on the Follow-ups page; directly completed rows can be reopened, and reopening is undoable."
+            }
+        },
+        {
+            "@type": "Question",
+            "name": "What is Place Trail?",
+            "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Place Trail is an optional map of the day built from location sampled only while recording, plus Health workout routes when available. Place names come from Apple geocoding; location is off unless enabled."
+            }
+        },
+        {
+            "@type": "Question",
+            "name": "What is included in the free tier versus premium?",
+            "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Free includes unlimited recording, 60 minutes of transcription per day, playback, search, and export. Premium adds unlimited transcription, AI hour/day/week/month reviews, chat, follow-ups, daily improvement, and completed-follow-up history. All three premium tiers unlock the same features."
+            }
+        },
+        {
+            "@type": "Question",
+            "name": "Is VoxTrail a social app?",
+            "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "No. It has no feed, follow, comment, like, public profile, or user-to-user messaging. Sharing uses the system share sheet."
+            }
+        }
+    ]
+}
+    </script>
     <style>
         * {
             margin: 0;
@@ -132,6 +213,11 @@
     </header>
 
     <section>
+        <h2>What VoxTrail is</h2>
+        <p>VoxTrail is a local-first all-day life recorder for iPhone and Apple Watch. It records your day, transcribes audio on device, separates speakers, indexes everything for semantic search, maps where the day happened, and composes an optional private AI review. Audio, transcripts, place data, and reviews stay on your devices. VoxTrail is not a social network or a cloud journal: there is no feed, follow, comment, public profile, or user-to-user messaging.</p>
+    </section>
+
+    <section>
         <h2>📧 Contact Us</h2>
         <p>Questions, feedback, or a problem with your recordings? We're happy to help.</p>
         <div class="contact-box">
@@ -170,12 +256,12 @@
 
         <div class="faq-item">
             <div class="faq-question">What's the difference between Free and Premium?</div>
-            <div class="faq-answer">The free tier includes unlimited recording and 60 minutes of transcription per day, plus playback, search, and export — but no AI reviews. Premium unlocks unlimited transcription, AI day review, and AI chat (Apple Intelligence or your own key).</div>
+            <div class="faq-answer">The free tier includes unlimited recording and 60 minutes of transcription per day, plus playback, search, and export — but no AI reviews. Premium unlocks unlimited transcription, AI hour/day/week/month reviews, chat, follow-ups, and daily improvement (Apple Intelligence or your own key).</div>
         </div>
 
         <div class="faq-item">
             <div class="faq-question">What do the three paid plans include?</div>
-            <div class="faq-answer">All three plans — Monthly, Yearly, and Lifetime — unlock exactly the same features: unlimited transcription, AI day review, and AI chat (Apple Intelligence or your own key). They differ only in how you pay. Monthly and Yearly are auto-renewing subscriptions with a 7-day free trial; Lifetime is a one-time purchase.</div>
+            <div class="faq-answer">All three plans — Monthly, Yearly, and Lifetime — unlock exactly the same features: unlimited transcription, AI hour/day/week/month reviews, chat, follow-ups, daily improvement, and the completed-follow-up history (Apple Intelligence or your own key). They differ only in how you pay. Monthly and Yearly are auto-renewing subscriptions with a 7-day free trial; Lifetime is a one-time purchase.</div>
         </div>
 
         <div class="faq-item">
@@ -211,6 +297,36 @@
         <div class="faq-item">
             <div class="faq-question">Is my data private?</div>
             <div class="faq-answer">Yes. Audio, transcripts, search indexes, and reviews stay on your devices. There is no account, no cloud archive, no iCloud sync, no ads, and no tracking. Your archive is yours.</div>
+        </div>
+
+        <div class="faq-item">
+            <div class="faq-question">How do follow-ups work, and where do completed items go?</div>
+            <div class="faq-answer">VoxTrail surfaces intentions and open loops from your recorded hours as follow-ups. Dated Calendar or Reminders candidates wait for your confirmation; nothing is written until you confirm each item. When you mark a follow-up 已完成, it moves to the 已完成 / 已关闭 history on the Follow-ups page. Rows completed directly offer 回看 and 重新打开; rows closed by a same-intent Calendar/Reminders decision are labeled 已关闭.</div>
+        </div>
+
+        <div class="faq-item">
+            <div class="faq-question">What is Daily Improvement?</div>
+            <div class="faq-answer">A review can produce one small commitment. Daily Improvement groups commitments into due, upcoming, and history; you check in as done, not done, or dropped. There are no streaks, and the check-in is reversible.</div>
+        </div>
+
+        <div class="faq-item">
+            <div class="faq-question">What is Place Trail?</div>
+            <div class="faq-answer">Place Trail is an optional map of your day, built from location sampled only while recording and, when available, Health workout routes. It shows stops, paths, and footprints; place names come from Apple geocoding. Location is off unless you enable it, and exports do not include coordinates or a map by default.</div>
+        </div>
+
+        <div class="faq-item">
+            <div class="faq-question">What are weekly and monthly reviews?</div>
+            <div class="faq-answer">VoxTrail rolls reviewed days into a weekly or monthly review, so patterns are visible without rereading every entry. The period entry shows how many recorded days already have reviews and what is still missing.</div>
+        </div>
+
+        <div class="faq-item">
+            <div class="faq-question">Which spoken languages are supported?</div>
+            <div class="faq-answer">The built-in on-device engine supports Chinese, English, Japanese, Korean, Cantonese, and Auto. The optional High Accuracy engine covers about 100 languages. On iOS 26+, Apple's system speech model is another choice when it is installed and the locale is available.</div>
+        </div>
+
+        <div class="faq-item">
+            <div class="faq-question">Is VoxTrail a social app?</div>
+            <div class="faq-answer">No. VoxTrail has no feed, follow, comment, like, public profile, or user-to-user messaging. Sharing is an explicit handoff to the system share sheet. The app is single-user and local-first.</div>
         </div>
     </section>
 

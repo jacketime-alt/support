@@ -4,8 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>VoxTrail | Searchable Memory for Your Day</title>
-    <meta name="description" content="VoxTrail: an all-day life recorder for iPhone and Apple Watch. Record from your wrist, transcribe on device, search everything you said, and get a private AI review of your day.">
-    <meta name="keywords" content="voice recorder, Apple Watch recorder, transcription, on-device transcription, semantic search, audio journal, day review, speaker labels, privacy app, bring your own key">
+    <meta name="description" content="VoxTrail: an all-day life recorder for iPhone and Apple Watch. Record from your wrist, transcribe on device, search by meaning, map your day, and keep AI follow-ups findable.">
+    <meta name="keywords" content="voice recorder, Apple Watch recorder, on-device transcription, semantic search, audio journal, day review, weekly review, speaker labels, follow-ups, place trail, privacy app, bring your own key">
     <meta name="author" content="Jun Huang">
     <meta name="robots" content="index, follow, max-image-preview:large">
     <link rel="canonical" href="https://jacketime-alt.github.io/support/VoxTrail/marketing.html">
@@ -22,8 +22,8 @@
     <meta name="twitter:description" content="An all-day life recorder for iPhone and Apple Watch. On-device transcription, semantic search, and a private AI review of your day.">
 
     <!-- AI crawler: product identity for generative engines -->
-    <meta name="ai-description" content="VoxTrail is a local-first, privacy-first all-day life recorder for iPhone and Apple Watch (iOS 18+, watchOS 11+). It captures audio from your wrist, transcribes it on device with local speech models, separates speakers with voiceprint recognition, indexes everything for semantic search, and composes a private AI day review. Optional AI runs via Apple Intelligence or a bring-your-own-key provider (DeepSeek, OpenAI, Claude, Gemini, Grok, MiniMax, Kimi, GLM, Qwen, or custom). It is NOT a social network or a cloud journal; the archive never leaves your devices.">
-    <meta name="ai-use-cases" content="recording your day from an Apple Watch, on-device audio transcription, searching spoken memories by meaning, reviewing the day with AI, labeling speakers in conversations, asking questions about your day">
+    <meta name="ai-description" content="VoxTrail is a local-first, privacy-first all-day life recorder for iPhone and Apple Watch (iOS 18+, watchOS 11+). It captures audio from your wrist, transcribes it on device with local speech models, separates speakers with voiceprint recognition, indexes everything for semantic search, maps where the day happened, and composes a private AI day review with follow-ups. Optional AI runs via Apple Intelligence or a bring-your-own-key provider (DeepSeek, OpenAI, Claude, Gemini, Grok, MiniMax, Kimi, GLM, Qwen, or custom). It is NOT a social network or a cloud journal; the archive never leaves your devices.">
+    <meta name="ai-use-cases" content="recording your day from an Apple Watch, on-device audio transcription, searching spoken memories by meaning, reviewing the day with AI, labeling speakers in conversations, finding a completed follow-up, mapping the day, asking questions about your day">
     <!-- App Store URL: https://apps.apple.com/app/id6823157641 -->
 
     <!-- Structured Data -->
@@ -35,7 +35,7 @@
         "operatingSystem": "iOS 18.0+",
         "applicationCategory": "ProductivityApplication",
         "description": "A local-first all-day life recorder for iPhone and Apple Watch. Capture your day, transcribe it on device, search it by meaning, and review it with private AI.",
-        "featureList": ["All-day recording from Apple Watch or iPhone", "On-device transcription", "Speaker labels via voiceprint recognition", "Semantic search across your archive", "AI day review and hour summaries", "Private chat grounded in your transcripts", "Recorder-first Apple Watch app", "Optional read-only health context", "Bring-your-own-key AI or Apple Intelligence"],
+        "featureList": ["All-day recording from Apple Watch or iPhone", "On-device transcription in 5 built-in languages or about 100 with High Accuracy", "Speaker labels and readable turn boundaries", "Semantic search across your archive", "AI hour, day, week and month reviews", "Private chat grounded in your transcripts", "Proactive follow-ups with a completed history", "Daily improvement commitments", "Place trail map and workout routes", "Recorder-first Apple Watch app with Live Activity progress", "Optional read-only health context", "Bring-your-own-key AI or Apple Intelligence"],
         "offers": [
             { "@type": "Offer", "price": "0", "priceCurrency": "USD", "name": "Free" },
             { "@type": "Offer", "price": "5.99", "priceCurrency": "USD", "name": "Monthly" },
@@ -52,7 +52,9 @@
         "mainEntity": [
             { "@type": "Question", "name": "What is VoxTrail?", "acceptedAnswer": { "@type": "Answer", "text": "VoxTrail is a local-first all-day life recorder for iPhone and Apple Watch. It records your day, transcribes the audio on device, indexes it for semantic search, and composes a private AI review of what happened." } },
             { "@type": "Question", "name": "Is VoxTrail private?", "acceptedAnswer": { "@type": "Answer", "text": "Yes. Audio, transcripts, search indexes, and reviews stay on your devices. There is no account, no cloud archive, no iCloud sync, no ads, and no tracking. Optional AI sends only the text you choose to Apple Intelligence or to a provider you configure with your own key." } },
-            { "@type": "Question", "name": "How much does VoxTrail cost?", "acceptedAnswer": { "@type": "Answer", "text": "Free to download. The free tier includes unlimited recording and 60 minutes of transcription per day. Premium unlocks unlimited transcription, AI day review, and AI chat (Apple Intelligence or your own key). All three premium plans — Monthly, Yearly, and Lifetime — unlock the same features; they differ only in how you pay." } }
+            { "@type": "Question", "name": "How much does VoxTrail cost?", "acceptedAnswer": { "@type": "Answer", "text": "Free to download. The free tier includes unlimited recording and 60 minutes of transcription per day. Premium unlocks unlimited transcription, AI hour/day/week/month reviews, chat, follow-ups, daily improvement, and completed-follow-up history. All three premium plans unlock the same features; they differ only in how you pay." } },
+            { "@type": "Question", "name": "How do follow-ups work?", "acceptedAnswer": { "@type": "Answer", "text": "VoxTrail surfaces intentions and open loops from your recorded hours. Nothing is written to Calendar or Reminders until you confirm each item. Completed items remain in the 已完成 / 已关闭 history; directly completed rows can be reopened, and reopening is undoable." } },
+            { "@type": "Question", "name": "Is VoxTrail a social app?", "acceptedAnswer": { "@type": "Answer", "text": "No. It has no feed, follow, comment, like, public profile, or user-to-user messaging. Sharing uses the system share sheet." } }
         ]
     }
     </script>
@@ -403,7 +405,7 @@
             <div class="app-icon">🎙️</div>
             <h1>VoxTrail</h1>
             <p class="subtitle">Searchable Memory for Your Day</p>
-            <p class="slogan">Record every day from your Apple Watch or iPhone. VoxTrail transcribes everything on device, turns your audio into a searchable memory, and writes a private AI review of what happened — what was said, what was decided, and what to remember.</p>
+            <p class="slogan">Record every day from your Apple Watch or iPhone. VoxTrail transcribes on device, turns your audio into searchable memory, maps where the day happened, and writes a private AI review with follow-ups you confirm and can revisit.</p>
             <a href="https://apps.apple.com/app/id6823157641" class="download-btn" target="_blank">Download on the App Store</a>
         </div>
     </section>
@@ -411,7 +413,7 @@
     <section class="features">
         <div class="container">
             <h2 class="section-title">Everything You Can Do</h2>
-            <p class="section-subtitle">A local-first recorder that turns your day into something you can search, skim, and reflect on.</p>
+            <p class="section-subtitle">A local-first recorder that turns your day into something you can search, map, and reflect on.</p>
             <div class="features-grid">
                 <div class="feature-card">
                     <div class="feature-icon">🎙️</div>
@@ -442,6 +444,26 @@
                     <div class="feature-icon">💬</div>
                     <h3>Chat About Your Day</h3>
                     <p>Ask questions about your day in a private AI chat, grounded in your own transcripts. Optional, and off until you enable it.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">✅</div>
+                    <h3>Follow-ups That Stay Findable</h3>
+                    <p>VoxTrail surfaces intentions and open loops from your day. Nothing is written to Calendar or Reminders until you confirm each item. Completed follow-ups remain in a history list, with undo and optional reopen.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">📈</div>
+                    <h3>Daily Improvement</h3>
+                    <p>Turn a review into one small commitment, then check in when it comes due: done, not done, or dropped. No streaks and no guilt.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🗺️</div>
+                    <h3>Place Trail</h3>
+                    <p>See where your day happened on a map, built from location sampled only while recording, plus workout routes from Health. Location is off unless you enable it.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">📅</div>
+                    <h3>Week &amp; Month Reviews</h3>
+                    <p>AI rolls reviewed days into weekly and monthly patterns, so you can zoom out without rereading every entry.</p>
                 </div>
                 <div class="feature-card">
                     <div class="feature-icon">⌚</div>
@@ -571,8 +593,8 @@
                     <p class="pricing-desc">7-day free trial · No long-term commitment</p>
                     <ul class="pricing-features">
                         <li>Unlimited transcription</li>
-                        <li>AI day review</li>
-                        <li>Bring-your-own-key chat</li>
+                        <li>AI hour, day, week and month reviews</li>
+                        <li>Chat, follow-ups, and daily improvement</li>
                     </ul>
                     <a href="https://apps.apple.com/app/id6823157641" class="pricing-btn outline" target="_blank">Get Monthly</a>
                 </div>
@@ -584,8 +606,8 @@
                     <p class="pricing-desc">7-day free trial · Save ~44% vs monthly</p>
                     <ul class="pricing-features">
                         <li>Unlimited transcription</li>
-                        <li>AI day review</li>
-                        <li>Bring-your-own-key chat</li>
+                        <li>AI hour, day, week and month reviews</li>
+                        <li>Chat, follow-ups, and daily improvement</li>
                     </ul>
                     <a href="https://apps.apple.com/app/id6823157641" class="pricing-btn" target="_blank">Start Free Trial</a>
                 </div>
@@ -597,8 +619,8 @@
                     <p class="pricing-desc">One-time purchase · No recurring billing</p>
                     <ul class="pricing-features">
                         <li>Unlimited transcription</li>
-                        <li>AI day review</li>
-                        <li>Bring-your-own-key chat</li>
+                        <li>AI hour, day, week and month reviews</li>
+                        <li>Chat, follow-ups, and daily improvement</li>
                     </ul>
                     <a href="https://apps.apple.com/app/id6823157641" class="pricing-btn outline" target="_blank">Get Lifetime</a>
                 </div>
