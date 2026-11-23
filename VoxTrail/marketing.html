@@ -658,26 +658,27 @@
             margin-bottom: 1.2rem;
         }
         .pricing-head .section-head { margin-bottom: 0; }
-        .currency {
+        .lang {
             display: inline-flex;
-            padding: 4px;
-            border: 1px solid var(--line);
+            padding: 3px;
+            border: 1px solid rgba(247, 243, 236, 0.16);
             border-radius: 999px;
-            background: var(--card);
+            background: rgba(247, 243, 236, 0.06);
+            flex-shrink: 0;
         }
-        .currency-btn {
+        .lang-btn {
             font: inherit;
-            font-size: 0.82rem;
+            font-size: 0.78rem;
             font-weight: 600;
-            padding: 7px 14px;
+            padding: 6px 11px;
             border: 0;
             border-radius: 999px;
             background: transparent;
-            color: var(--ink-soft);
+            color: rgba(247, 243, 236, 0.72);
             cursor: pointer;
             transition: background-color 0.2s ease, color 0.2s ease;
         }
-        .currency-btn[aria-pressed="true"] { background: var(--ink); color: var(--paper); }
+        .lang-btn[aria-pressed="true"] { background: var(--paper); color: var(--ink); }
         .promo-note {
             display: inline-flex;
             align-items: center;
@@ -917,6 +918,25 @@
         .lightbox-controls button:hover { background: rgba(247, 243, 236, 0.2); }
         .lightbox-counter { font-size: 0.8rem; color: rgba(247, 243, 236, 0.6); min-width: 4.5em; text-align: center; }
 
+        /* ---------- Chinese typography ---------- */
+        html[lang="zh-Hans"] body { line-height: 1.75; }
+        html[lang="zh-Hans"] .hero h1,
+        html[lang="zh-Hans"] .section-head h2,
+        html[lang="zh-Hans"] .step-copy h3,
+        html[lang="zh-Hans"] .find-card h3,
+        html[lang="zh-Hans"] .context-copy h2,
+        html[lang="zh-Hans"] .privacy-copy h2,
+        html[lang="zh-Hans"] .final h2 {
+            letter-spacing: -0.008em;
+            line-height: 1.16;
+        }
+        html[lang="zh-Hans"] .hero h1 {
+            font-size: clamp(2.5rem, 1.7rem + 3.6vw, 4.1rem);
+            line-height: 1.2;
+        }
+        html[lang="zh-Hans"] .hero h1 em { font-style: normal; }
+        html[lang="zh-Hans"] .eyebrow { letter-spacing: 0.16em; }
+
         /* ---------- reveal ---------- */
         .reveal { opacity: 0; transform: translateY(26px); transition: opacity 0.7s var(--ease-out), transform 0.7s var(--ease-out); }
         .reveal.in { opacity: 1; transform: none; }
@@ -948,19 +968,26 @@
             .footer-grid { flex-direction: column; }
             .pricing-head { flex-direction: column; align-items: flex-start; }
         }
+        @media (max-width: 350px) {
+            .nav-cta { display: none; }
+        }
         @media (max-width: 560px) {
             .pricing-grid { grid-template-columns: 1fr; }
             .facts-grid { grid-template-columns: 1fr 1fr; }
             .hero-actions { align-items: flex-start; flex-direction: column; }
             .rail-cell { width: 62vw; max-width: 240px; }
             .eyebrow { letter-spacing: 0.2em; }
+            .site-nav { gap: 8px; padding-right: 6px; }
+            .brand { font-size: 1.02rem; }
+            .nav-cta { padding: 8px 13px; }
+            .lang-btn { padding: 6px 9px; font-size: 0.74rem; }
         }
     </style>
 </head>
 <body>
     <a class="skip-link" href="#main">Skip to content</a>
 
-    <nav class="site-nav" aria-label="Main">
+    <nav class="site-nav" aria-label="Main" data-zh-aria="主导航">
         <a class="brand" href="#top">
             <img src="marketing-assets/icon-180.png" alt="" width="26" height="26">
             VoxTrail
@@ -972,6 +999,10 @@
             <li><a href="#pricing">Pricing</a></li>
             <li><a href="#faq">FAQ</a></li>
         </ul>
+        <div class="lang" role="group" aria-label="Language" data-zh-aria="语言">
+            <button type="button" class="lang-btn" data-lang="en" aria-pressed="true">EN</button>
+            <button type="button" class="lang-btn" data-lang="zh" aria-pressed="false">中文</button>
+        </div>
         <a class="nav-cta" href="https://apps.apple.com/app/id6823157641">App Store</a>
     </nav>
 
@@ -1156,7 +1187,7 @@
                         <li><b>Stays on device</b><span>Audio, transcripts, the search index, and reviews.</span></li>
                         <li><b>Leaves only if you ask</b><span>Optional AI sends just the text for that request — to Apple Intelligence, or to a provider you configure.</span></li>
                         <li><b>Never through us</b><span>Your API key lives in the Keychain and requests go straight from your device to the provider.</span></li>
-                        <li><b>Read the fine print</b><span><a href="https://jacketime-alt.github.io/support/VoxTrail/privacy.html">Privacy policy</a> — no account, no ads, no trackers.</span></li>
+                        <li><b>Read the fine print</b><span><a href="https://jacketime-alt.github.io/support/VoxTrail/privacy.html" data-zh-href="https://jacketime-alt.github.io/support/VoxTrail/privacy-zh-Hans.html">Privacy policy</a> — no account, no ads, no trackers.</span></li>
                     </ul>
                 </div>
                 <div class="privacy-art reveal">
@@ -1258,13 +1289,9 @@
                         <h2 id="pricing-title">Start free. Pay only if you want more.</h2>
                         <p>All three premium plans unlock the exact same features — choose how you want to pay. Recording is unlimited on every plan.</p>
                     </div>
-                    <div class="currency" role="group" aria-label="Currency">
-                        <button type="button" class="currency-btn" data-currency="usd" aria-pressed="true">US$</button>
-                        <button type="button" class="currency-btn" data-currency="cny" aria-pressed="false">¥ CNY</button>
-                    </div>
                 </div>
                 <p class="promo-note">Launch offer, one month only. Subscription launch prices cover the first period and renew at the regular price; the Lifetime launch price applies during the offer.</p>
-                <p class="sr-only" role="status" id="currency-status">Showing prices in US dollars.</p>
+                <p class="sr-only" role="status" id="lang-status">Showing the page in English with prices in US dollars.</p>
                 <div class="pricing-grid">
                     <article class="plan">
                         <p class="plan-tag">Starter</p>
@@ -1396,8 +1423,8 @@
                 </div>
                 <nav class="footer-links" aria-label="Footer">
                     <a href="https://jacketime-alt.github.io/support/VoxTrail/">App Support</a>
-                    <a href="https://jacketime-alt.github.io/support/VoxTrail/privacy.html">Privacy Policy</a>
-                    <a href="https://jacketime-alt.github.io/support/VoxTrail/terms.html">Terms of Service</a>
+                    <a href="https://jacketime-alt.github.io/support/VoxTrail/privacy.html" data-zh-href="https://jacketime-alt.github.io/support/VoxTrail/privacy-zh-Hans.html">Privacy Policy</a>
+                    <a href="https://jacketime-alt.github.io/support/VoxTrail/terms.html" data-zh-href="https://jacketime-alt.github.io/support/VoxTrail/terms-zh-Hans.html">Terms of Service</a>
                 </nav>
             </div>
             <p class="copyright">
@@ -1424,12 +1451,16 @@
         (function () {
             "use strict";
 
-            var cards = Array.prototype.map.call(document.querySelectorAll(".rail-item"), function (el) {
-                return {
-                    src: "marketing-assets/poster-" + String(Number(el.dataset.index) + 1).padStart(2, "0") + "-760.webp",
-                    caption: el.querySelector(".rail-label").textContent.trim()
-                };
-            });
+            function readCards() {
+                return Array.prototype.map.call(document.querySelectorAll(".rail-item"), function (el) {
+                    return {
+                        src: "marketing-assets/poster-" + String(Number(el.dataset.index) + 1).padStart(2, "0") + "-760.webp",
+                        caption: el.querySelector(".rail-label").textContent.trim()
+                    };
+                });
+            }
+
+            var cards = readCards();
 
             var dialog = document.getElementById("lightbox");
             var dialogImg = document.getElementById("lightbox-img");
@@ -1467,28 +1498,256 @@
 
             document.getElementById("year").textContent = new Date().getFullYear();
 
-            var currencyButtons = document.querySelectorAll(".currency-btn");
-            var currencyStatus = document.getElementById("currency-status");
+            var ZH = {
+                "Skip to content": "跳到正文",
+                "How it works": "使用方式",
+                "Find anything": "找回记忆",
+                "Privacy": "隐私",
+                "Pricing": "价格",
+                "FAQ": "常见问题",
+                "A recorder you forget you're wearing": "一整天戴着，忘了它在录音",
+                "Wear it all day.": "戴一整天。",
+                "Read the day back.": "把这一天读回来。",
+                "VoxTrail records from your Apple Watch, transcribes on your iPhone, and turns the hours into memory you can search, map, and read back. No account. No cloud archive.":
+                    "VoxTrail 从 Apple Watch 开始录音，在你的 iPhone 上完成转写，把一整天的声音变成可搜索、可回看的记忆。没有账号，也没有云端档案。",
+                "Download on the": "下载自",
+                "See how it works": "看看怎么用",
+                "On device": "端上运行",
+                "No account": "无需账号",
+                "Works offline": "离线可用",
+                "60 min": "60 分钟",
+                "Free transcription, every single day.": "每天免费转写额度。",
+                "≈100": "约 100",
+                "Languages with the High Accuracy engine.": "高精度引擎支持的语言。",
+                "Review horizons: hour, day, week, month.": "复盘层级：小时、日、周、月。",
+                "Cloud archives, accounts, or trackers.": "云端档案、账号或追踪器。",
+                "A day, end to end": "从早到晚，一条完整的闭环",
+                "Three moments. One loop.": "三个瞬间，一个闭环。",
+                "Capture on the wrist, write on the phone, read it back at night. Most of it happens while the phone is in your pocket.":
+                    "在手腕上开录，在手机上成文，晚上读回来。大部分过程发生时，手机还在口袋里。",
+                "Step 01 — Capture": "第 01 步 · 采集",
+                "The face says REC.": "表盘上写着 REC。",
+                "Start from a complication on your Infograph face. The top-right corner reads REC while it records and READY when idle, so you never open the app to check. Marks, pauses, quiet hours, and interruptions are kept as they happen, and a Live Activity tracks the take on your iPhone.":
+                    "从 Infograph 表盘的复杂功能直接开录。录音时右上角显示 REC，空闲时显示 READY，不必打开 App 确认。标记、暂停、安静时段和中断都会按发生的时间保留，iPhone 上的实时活动同步显示录制进度。",
+                "No app to open": "不用打开 App",
+                "Live Activity": "实时活动",
+                "Quiet hours": "安静时段",
+                "Step 02 — Transcribe": "第 02 步 · 转写",
+                "Every conversation, written down.": "每一段对话，都写成文字。",
+                "Speech becomes text on your iPhone with local models — no upload, no account. Timestamps stay attached, the original audio sits one tap away, and voiceprint recognition splits who said what so a conversation reads like a conversation.":
+                    "语音在你的 iPhone 上用本地模型转成文字——不上传，也不需要账号。时间戳原样保留，原始音频一点即播；声纹识别区分谁在说话，让对话读起来仍像对话。",
+                "On-device": "端上完成",
+                "Speaker labels": "说话人标注",
+                "Tap to replay": "点击回听",
+                "Step 03 — Review": "第 03 步 · 复盘",
+                "Your day, already written.": "你的一天，已经写好了。",
+                "Hour summaries roll into a day review: what happened, what was decided, what to remember. Week and month reviews zoom out. Open loops become follow-ups you confirm — nothing is written to Calendar or Reminders until you do.":
+                    "小时摘要汇成日复盘：发生了什么、决定了什么、该记住什么。周复盘和月复盘再往外拉一层。未完成的念头会变成待你确认的跟进——在你确认之前，不会写入日历或提醒事项。",
+                "Hour · Day · Week · Month": "小时 · 日 · 周 · 月",
+                "Follow-ups you confirm": "跟进需你确认",
+                "Undo and reopen": "可撤销、可重开",
+                "Two ways back in": "两种找回方式",
+                "Search it, or just ask.": "搜一下，或者直接问。",
+                "Describe the moment in your own words, or put a question to the archive. Both land on the second it was spoken.":
+                    "用自己的话描述那一刻，或者直接向档案提问。两种方式都会落到它被说出来的那一秒。",
+                "Search by meaning": "按意思搜索",
+                "Describe the moment in your own words. VoxTrail matches on meaning, not exact phrasing, and every hit jumps to the second it was spoken.":
+                    "用你自己的话描述那个瞬间。VoxTrail 按意思匹配，而不是死抠关键词，每条结果都能跳到原话被说出的那一秒。",
+                "Semantic search": "语义搜索",
+                "Original audio": "原始音频",
+                "Ask your day": "问问你的一天",
+                "Put a question to your archive and get an answer grounded in your own transcripts, with citations that play back the source. Optional, and off until you turn it on.":
+                    "向你的档案提一个问题，得到的回答基于你自己的转写，并附上可以回放原文的引用。可选功能，默认关闭。",
+                "Grounded in your archive": "基于你的档案",
+                "Citations": "可回放引用",
+                "More than a recording": "不止是一段录音",
+                "A day has a place.": "一天，也有它的地点。",
+                "See where the hours happened on a trail built from location sampled only while recording, plus workout routes from Health. Optional read-only heart rate, HRV, steps, and sleep sit beside the timeline as non-clinical context for your own review.":
+                    "在只在录音时采样的位置上，看看这一天发生在哪里，再叠加健康 App 里的训练路线。可选、只读的心率、HRV、步数和睡眠，作为非临床的上下文放在时间线旁，供你自己回看。",
+                "Place trail": "地点轨迹",
+                "Where the day happened — off unless you enable it.": "一天发生在哪里——默认关闭，需要你开启。",
+                "Workout routes": "训练路线",
+                "Your Health workouts plotted onto the same map.": "把健康 App 里的训练画在同一张地图上。",
+                "Health context": "健康上下文",
+                "Read-only signals beside the timeline, never medical advice.": "时间线旁只读的身体信号，不构成医疗建议。",
+                "Private by design": "隐私，是设计的一部分",
+                "Almost everything runs locally.": "几乎所有事情，都在本机完成。",
+                "Recording, transcription, search, and the archive stay on your devices. There is no VoxTrail server, no cloud archive, no iCloud sync, no ads, and no tracking.":
+                    "录音、转写、搜索和档案都留在你的设备上。没有 VoxTrail 服务器，没有云端档案，没有 iCloud 同步，没有广告，也没有追踪。",
+                "Stays on device": "留在本机",
+                "Audio, transcripts, the search index, and reviews.": "音频、转写、搜索索引和复盘。",
+                "Leaves only if you ask": "只有你主动，才会离开",
+                "Optional AI sends just the text for that request — to Apple Intelligence, or to a provider you configure.":
+                    "可选的 AI 只发送这次请求所需的文字——给 Apple 智能，或者给你配置的服务商。",
+                "Never through us": "从不经过我们",
+                "Your API key lives in the Keychain and requests go straight from your device to the provider.":
+                    "API Key 保存在钥匙串里，请求从你的设备直接发往服务商。",
+                "Read the fine print": "读读细则",
+                "Privacy policy": "隐私政策",
+                "— no account, no ads, no trackers.": "——没有账号、没有广告、没有追踪器。",
+                "The App Store story": "App Store 上的一组故事",
+                "Eleven cards, one day.": "十一张卡片，一天。",
+                "The full listing, start to finish. Tap any card to read it full size.": "完整的商店截图，从第一张到最后一张。点任意一张看大图。",
+                "Wear it all day. Read the day back.": "戴一整天。把这一天读回来。",
+                "Find the moment, not the file.": "找到那一刻，而不是那个文件。",
+                "Ask about yesterday afternoon.": "问问昨天下午。",
+                "More than a recording.": "不止是一段录音。",
+                "Know how long it can record.": "知道它能录多久。",
+                "Press Mark. AI reads the hour.": "按下标记，AI 读这一小时。",
+                "What you left open comes back.": "你留下的悬念，会回来。",
+                "Swipe or scroll sideways — eleven cards, no sign-up to read them.": "左右滑动或滚动——十一张卡片，无需注册即可查看。",
+                "Simple, transparent pricing": "简单透明的价格",
+                "Start free. Pay only if you want more.": "免费开始，想要更多再付费。",
+                "All three premium plans unlock the exact same features — choose how you want to pay. Recording is unlimited on every plan.":
+                    "三档付费方案解锁完全相同的功能——只是付款方式不同。任何方案下录音都不限量。",
+                "Launch offer, one month only. Subscription launch prices cover the first period and renew at the regular price; the Lifetime launch price applies during the offer.":
+                    "限时一个月的上线优惠。订阅的上线价只覆盖首期，之后按常规价续订；终身的上线价在活动期间有效。",
+                "Starter": "入门",
+                "Free": "免费",
+                "Try the whole loop, no card required.": "先把整条闭环试一遍，不用绑卡。",
+                "Unlimited recording": "录音不限量",
+                "60 minutes of transcription per day": "每天 60 分钟转写",
+                "Playback, search, and export": "回放、搜索与导出",
+                "No AI reviews or chat": "不含 AI 复盘与对话",
+                "Download free": "免费下载",
+                "Flexible": "灵活",
+                "Monthly": "月度",
+                "Launch price for the first month; renews at the regular price.": "首月上线价，之后按常规价续订。",
+                "Unlimited transcription": "转写不限量",
+                "AI hour, day, week and month reviews": "AI 小时、日、周、月复盘",
+                "Chat, follow-ups, and daily improvement": "对话、待跟进与日日精进",
+                "Get launch price": "以上线价开通",
+                "Best value": "最超值",
+                "Yearly": "年度",
+                "Launch price for the first year; renews at the regular price.": "首年上线价，之后按常规价续订。",
+                "Get yearly offer": "获取年度优惠",
+                "Pay once": "一次买断",
+                "Lifetime": "终身",
+                "One purchase at the launch price; no recurring billing.": "上线价一次买断，不自动续费。",
+                "Get lifetime": "购买终身版",
+                "Launch offer runs for one month only. Subscription launch prices apply to the first billing period and renew at the regular price shown; the Lifetime launch price applies during the offer. Subscriptions renew automatically and are billed through your App Store account; cancel at least 24 hours before the period ends to stop renewal. Prices are shown in US dollars unless CNY is selected; the App Store always displays your local price.":
+                    "上线优惠限时一个月。订阅的上线价仅适用于首个计费周期，之后按页面所示的常规价续订；终身的上线价在活动期间有效。订阅会自动续订，并通过你的 App Store 账户扣费；如需停止续订，请在周期结束前至少 24 小时取消。价格会随页面语言显示为美元或人民币；App Store 始终以你所在地区的本地价格为准。",
+                "Questions, answered": "常见问题",
+                "The short version.": "简短版。",
+                "More detail lives in": "更多细节见",
+                "Help & Support": "帮助与支持",
+                "What is VoxTrail?": "VoxTrail 是什么？",
+                "VoxTrail is a local-first all-day life recorder for iPhone and Apple Watch. It records your day, transcribes the audio on device, indexes it for semantic search, maps where the day happened, and composes an optional private AI review. It is not a social network or a cloud journal.":
+                    "VoxTrail 是一款本地优先的全天生活记录器，适用于 iPhone 与 Apple Watch。它录下你的一天，在本机完成转写，建立语义搜索索引，标出这一天发生的地点，并可选生成私密的 AI 复盘。它不是社交网络，也不是云端日记。",
+                "Is my audio private?": "我的音频安全吗？",
+                "Yes. Audio, transcripts, search indexes, and reviews stay on your devices. There is no account, no cloud archive, no iCloud sync, no ads, and no tracking. Optional AI sends only the text for the request you make — to Apple Intelligence or to a provider you configure with your own key. Audio is never sent.":
+                    "安全。音频、转写、搜索索引和复盘都留在你的设备上。没有账号、没有云端档案、没有 iCloud 同步、没有广告，也没有追踪。可选的 AI 只发送你这次请求所需的文字——给 Apple 智能，或给你用自己的 Key 配置的服务商。音频从不上传。",
+                "Do I need a subscription to use VoxTrail?": "用 VoxTrail 必须订阅吗？",
+                "No. The free tier includes unlimited recording, 60 minutes of transcription per day, playback, search, and export. Premium unlocks unlimited transcription, AI hour/day/week/month reviews, chat, follow-ups, and daily improvement.":
+                    "不用。免费版包含不限量录音、每天 60 分钟转写、回放、搜索与导出。付费版解锁不限量转写、AI 小时/日/周/月复盘、对话、待跟进与日日精进。",
+                "Does it work offline?": "离线能用吗？",
+                "Recording, on-device transcription, and semantic search work without a connection. AI reviews and chat need a connection because they call Apple Intelligence or the provider you configured.":
+                    "录音、端上转写和语义搜索无需联网。AI 复盘与对话需要联网，因为它们会调用 Apple 智能或你配置的服务商。",
+                "How do follow-ups work?": "待跟进是怎么工作的？",
+                "VoxTrail surfaces intentions and open loops from your recorded hours. Nothing is written to Calendar or Reminders until you confirm each item. Completed items remain in the 已完成 / 已关闭 history; directly completed rows can be reopened, and reopening is undoable.":
+                    "VoxTrail 会从录制的小时里找出未完成的意图和悬念。在你逐条确认之前，不会写入日历或提醒事项。已完成的项目会保留在「已完成 / 已关闭」历史里；直接完成的条目可以重新打开，重开可撤销。",
+                "Which devices are supported?": "支持哪些设备？",
+                "An iPhone on iOS 18 or later and an Apple Watch on watchOS 11 or later. Apple Intelligence requires a supported device, and the High Accuracy transcription engine is recommended on iPhone 14 Pro or newer.":
+                    "需要 iOS 18 或更新版本的 iPhone，以及 watchOS 11 或更新版本的 Apple Watch。Apple 智能需要受支持的设备；高精度转写引擎建议在 iPhone 14 Pro 或更新机型上使用。",
+                "Your day is already happening.": "你的一天，正在发生。",
+                "Keep it. Start recording from your wrist, and let the iPhone write it down.": "把它留住。从手腕开始录音，让 iPhone 把它写下来。",
+                "Free to download · unlimited recording · iPhone and Apple Watch": "免费下载 · 录音不限量 · iPhone 与 Apple Watch",
+                "App Support": "帮助与支持",
+                "Privacy Policy": "隐私政策",
+                "Terms of Service": "服务条款",
+                "Jun Huang. All rights reserved.": "Jun Huang。保留所有权利。",
+                "VoxTrail is available exclusively on the Apple App Store.": "VoxTrail 仅在 Apple App Store 提供。",
+                "← Prev": "← 上一张",
+                "Next →": "下一张 →",
+                "Close": "关闭",
+                ".": "。"
+            };
 
-            function setCurrency(currency) {
+            var textEntries = [];
+            var walker = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT, null);
+            var textNode;
+            while ((textNode = walker.nextNode())) {
+                var parent = textNode.parentNode;
+                if (!parent || parent.nodeName === "SCRIPT" || parent.nodeName === "STYLE") { continue; }
+                if (parent.closest && parent.closest("[data-usd]")) { continue; }
+                var key = textNode.data.trim();
+                if (!key || typeof ZH[key] !== "string") { continue; }
+                textEntries.push({
+                    node: textNode,
+                    en: textNode.data,
+                    zh: textNode.data.replace(key, ZH[key])
+                });
+            }
+
+            var langButtons = document.querySelectorAll(".lang-btn");
+            var langStatus = document.getElementById("lang-status");
+            var metaDescription = document.querySelector('meta[name="description"]');
+            var enTitle = document.title;
+            var enDescription = metaDescription ? metaDescription.getAttribute("content") : "";
+            var zhTitle = "VoxTrail | 可搜索的一天";
+            var zhDescription = "VoxTrail：适用于 iPhone 与 Apple Watch 的全天生活记录器。在手腕上录音，在本机转写，按意思搜索，把一天画在地图上，并让 AI 待跟进随时可查。";
+
+            function applyPrices(currency) {
                 document.querySelectorAll("[data-usd]").forEach(function (el) {
                     var value = el.getAttribute("data-" + currency);
                     if (value !== null) { el.textContent = value; }
                 });
-                currencyButtons.forEach(function (btn) {
-                    btn.setAttribute("aria-pressed", String(btn.dataset.currency === currency));
+            }
+
+            function localizeRail(lang) {
+                document.querySelectorAll(".rail-item").forEach(function (el) {
+                    var label = el.querySelector(".rail-label").textContent.trim();
+                    el.setAttribute("aria-label", (lang === "zh" ? "打开卡片：" : "Open card: ") + label);
+                    var img = el.querySelector("img");
+                    if (img) { img.alt = (lang === "zh" ? "卡片：" : "Card: ") + label; }
                 });
-                if (currencyStatus) {
-                    currencyStatus.textContent = currency === "cny"
-                        ? "Showing prices in Chinese yuan."
-                        : "Showing prices in US dollars.";
+            }
+
+            function applyLanguage(lang, persist) {
+                var isZh = lang === "zh";
+                textEntries.forEach(function (entry) {
+                    entry.node.data = isZh ? entry.zh : entry.en;
+                });
+                document.documentElement.lang = isZh ? "zh-Hans" : "en";
+                document.title = isZh ? zhTitle : enTitle;
+                if (metaDescription) {
+                    metaDescription.setAttribute("content", isZh ? zhDescription : enDescription);
+                }
+                langButtons.forEach(function (btn) {
+                    btn.setAttribute("aria-pressed", String(btn.dataset.lang === lang));
+                });
+                document.querySelectorAll("[data-zh-aria]").forEach(function (el) {
+                    if (!el.dataset.enAria) { el.dataset.enAria = el.getAttribute("aria-label") || ""; }
+                    el.setAttribute("aria-label", isZh ? el.dataset.zhAria : el.dataset.enAria);
+                });
+                document.querySelectorAll("[data-zh-href]").forEach(function (link) {
+                    if (!link.dataset.enHref) { link.dataset.enHref = link.getAttribute("href"); }
+                    link.setAttribute("href", isZh ? link.dataset.zhHref : link.dataset.enHref);
+                });
+                applyPrices(isZh ? "cny" : "usd");
+                localizeRail(lang);
+                cards = readCards();
+                if (langStatus) {
+                    langStatus.textContent = isZh
+                        ? "页面已切换为中文，价格以人民币显示。"
+                        : "Showing the page in English with prices in US dollars.";
+                }
+                if (persist) {
+                    try { localStorage.setItem("voxtrail.lang", lang); } catch (error) { /* storage may be blocked */ }
                 }
             }
 
-            currencyButtons.forEach(function (btn) {
-                btn.addEventListener("click", function () { setCurrency(btn.dataset.currency); });
+            langButtons.forEach(function (btn) {
+                btn.addEventListener("click", function () { applyLanguage(btn.dataset.lang, true); });
             });
-            setCurrency("usd");
+
+            var storedLang = null;
+            try { storedLang = localStorage.getItem("voxtrail.lang"); } catch (error) { /* storage may be blocked */ }
+            var browserLang = (navigator.languages && navigator.languages[0]) || navigator.language || "en";
+            var initialLang = storedLang === "zh" || storedLang === "en"
+                ? storedLang
+                : (/^zh/i.test(browserLang) ? "zh" : "en");
+            applyLanguage(initialLang, false);
 
             var reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
             var nodes = document.querySelectorAll(".reveal");
