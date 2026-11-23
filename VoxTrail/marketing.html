@@ -55,9 +55,9 @@
         "featureList": ["All-day recording from Apple Watch or iPhone", "On-device transcription in 5 built-in languages or about 100 with High Accuracy", "Speaker labels and readable turn boundaries", "Semantic search across your archive", "AI hour, day, week and month reviews", "Private chat grounded in your transcripts", "Proactive follow-ups with a completed history", "Daily improvement commitments", "Place trail map and workout routes", "Recorder-first Apple Watch app with Live Activity progress", "Optional read-only health context", "Bring-your-own-key AI or Apple Intelligence"],
         "offers": [
             { "@type": "Offer", "price": "0", "priceCurrency": "USD", "name": "Free" },
-            { "@type": "Offer", "price": "5.99", "priceCurrency": "USD", "name": "Monthly" },
-            { "@type": "Offer", "price": "39.99", "priceCurrency": "USD", "name": "Yearly" },
-            { "@type": "Offer", "price": "79.99", "priceCurrency": "USD", "name": "Lifetime" }
+            { "@type": "Offer", "price": "2.99", "priceCurrency": "USD", "name": "Monthly (launch price)" },
+            { "@type": "Offer", "price": "14.99", "priceCurrency": "USD", "name": "Yearly (launch price)" },
+            { "@type": "Offer", "price": "19.99", "priceCurrency": "USD", "name": "Lifetime (launch price)" }
         ],
         "author": { "@type": "Person", "name": "Jun Huang" }
     }
@@ -149,6 +149,18 @@
             transition: top 0.2s var(--ease-out);
         }
         .skip-link:focus { top: 16px; }
+
+        .sr-only {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            padding: 0;
+            margin: -1px;
+            overflow: hidden;
+            clip: rect(0, 0, 0, 0);
+            white-space: nowrap;
+            border: 0;
+        }
 
         :focus-visible {
             outline: 2px solid var(--terra);
@@ -637,6 +649,57 @@
 
         /* ---------- pricing ---------- */
         .pricing { padding-block: var(--space-section); background: var(--paper-2); }
+        .pricing-head {
+            display: flex;
+            align-items: flex-end;
+            justify-content: space-between;
+            gap: 2rem;
+            flex-wrap: wrap;
+            margin-bottom: 1.2rem;
+        }
+        .pricing-head .section-head { margin-bottom: 0; }
+        .currency {
+            display: inline-flex;
+            padding: 4px;
+            border: 1px solid var(--line);
+            border-radius: 999px;
+            background: var(--card);
+        }
+        .currency-btn {
+            font: inherit;
+            font-size: 0.82rem;
+            font-weight: 600;
+            padding: 7px 14px;
+            border: 0;
+            border-radius: 999px;
+            background: transparent;
+            color: var(--ink-soft);
+            cursor: pointer;
+            transition: background-color 0.2s ease, color 0.2s ease;
+        }
+        .currency-btn[aria-pressed="true"] { background: var(--ink); color: var(--paper); }
+        .promo-note {
+            display: inline-flex;
+            align-items: center;
+            gap: 9px;
+            width: fit-content;
+            margin-bottom: 1.6rem;
+            padding: 8px 15px;
+            border: 1px solid rgba(169, 99, 62, 0.28);
+            border-radius: 999px;
+            background: rgba(169, 99, 62, 0.09);
+            color: var(--terra-deep);
+            font-size: 0.85rem;
+            font-weight: 500;
+        }
+        .promo-note::before {
+            content: "";
+            width: 7px;
+            height: 7px;
+            border-radius: 50%;
+            background: var(--terra);
+            flex-shrink: 0;
+        }
         .pricing-grid {
             display: grid;
             grid-template-columns: repeat(4, minmax(0, 1fr));
@@ -674,14 +737,30 @@
         .plan.featured .plan-tag { background: var(--terra); color: #fff; }
         .plan h3 { font-family: var(--font-serif); font-size: 1.35rem; font-weight: 600; margin-bottom: 0.35rem; }
         .plan .price {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: baseline;
+            gap: 0.35rem;
+            margin-bottom: 0.55rem;
+        }
+        .plan .price .amount {
             font-family: var(--font-serif);
             font-size: clamp(2rem, 1.6rem + 1vw, 2.5rem);
             font-weight: 600;
             letter-spacing: -0.02em;
             line-height: 1;
-            margin-bottom: 0.4rem;
         }
-        .plan .price span { font-family: var(--font-sans); font-size: 0.86rem; font-weight: 400; color: var(--ink-mute); letter-spacing: 0; }
+        .plan .price .unit {
+            font-size: 0.86rem;
+            color: var(--ink-mute);
+        }
+        .plan .price-note {
+            flex-basis: 100%;
+            margin-top: 0.12rem;
+            font-size: 0.8rem;
+            color: var(--ink-mute);
+        }
+        .plan .price-note s { text-decoration-thickness: 1px; }
         .plan .desc { font-size: 0.85rem; color: var(--ink-mute); min-height: 2.7em; margin-bottom: 1.1rem; }
         .plan ul { list-style: none; display: grid; gap: 0.55rem; margin-bottom: 1.4rem; flex-grow: 1; }
         .plan li { font-size: 0.9rem; color: var(--ink-soft); display: flex; gap: 9px; align-items: flex-start; }
@@ -867,6 +946,7 @@
             .find-grid { grid-template-columns: 1fr; }
             .privacy-rows li { grid-template-columns: 1fr; gap: 0.35rem; }
             .footer-grid { flex-direction: column; }
+            .pricing-head { flex-direction: column; align-items: flex-start; }
         }
         @media (max-width: 560px) {
             .pricing-grid { grid-template-columns: 1fr; }
@@ -1172,16 +1252,27 @@
 
         <section class="pricing" id="pricing" aria-labelledby="pricing-title">
             <div class="container">
-                <div class="section-head">
-                    <p class="eyebrow">Simple, transparent pricing</p>
-                    <h2 id="pricing-title">Start free. Pay only if you want more.</h2>
-                    <p>All three premium plans unlock the exact same features — choose how you want to pay. Recording is unlimited on every plan.</p>
+                <div class="pricing-head">
+                    <div class="section-head">
+                        <p class="eyebrow">Simple, transparent pricing</p>
+                        <h2 id="pricing-title">Start free. Pay only if you want more.</h2>
+                        <p>All three premium plans unlock the exact same features — choose how you want to pay. Recording is unlimited on every plan.</p>
+                    </div>
+                    <div class="currency" role="group" aria-label="Currency">
+                        <button type="button" class="currency-btn" data-currency="usd" aria-pressed="true">US$</button>
+                        <button type="button" class="currency-btn" data-currency="cny" aria-pressed="false">¥ CNY</button>
+                    </div>
                 </div>
+                <p class="promo-note">Launch offer, one month only. Subscription launch prices cover the first period and renew at the regular price; the Lifetime launch price applies during the offer.</p>
+                <p class="sr-only" role="status" id="currency-status">Showing prices in US dollars.</p>
                 <div class="pricing-grid">
                     <article class="plan">
                         <p class="plan-tag">Starter</p>
                         <h3>Free</h3>
-                        <p class="price">$0 <span>/ forever</span></p>
+                        <p class="price">
+                            <span class="amount" data-usd="$0" data-cny="¥0">$0</span>
+                            <span class="unit" data-usd="/ forever" data-cny="/ 永久">/ forever</span>
+                        </p>
                         <p class="desc">Try the whole loop, no card required.</p>
                         <ul>
                             <li>Unlimited recording</li>
@@ -1195,34 +1286,46 @@
                     <article class="plan">
                         <p class="plan-tag">Flexible</p>
                         <h3>Monthly</h3>
-                        <p class="price">$5.99 <span>/ month</span></p>
-                        <p class="desc">7-day free trial · cancel anytime.</p>
+                        <p class="price">
+                            <span class="amount" data-usd="$2.99" data-cny="¥12">$2.99</span>
+                            <span class="unit" data-usd="/ first month" data-cny="/ 首月">/ first month</span>
+                            <span class="price-note"><span data-usd="then" data-cny="之后">then</span> <span data-usd="$4.99 / month" data-cny="¥18 / 月">$4.99 / month</span></span>
+                        </p>
+                        <p class="desc">Launch price for the first month; renews at the regular price.</p>
                         <ul>
                             <li>Unlimited transcription</li>
                             <li>AI hour, day, week and month reviews</li>
                             <li>Chat, follow-ups, and daily improvement</li>
                         </ul>
-                        <a class="plan-btn" href="https://apps.apple.com/app/id6823157641">Start trial</a>
+                        <a class="plan-btn" href="https://apps.apple.com/app/id6823157641">Get launch price</a>
                     </article>
 
                     <article class="plan featured">
                         <p class="plan-tag">Best value</p>
                         <h3>Yearly</h3>
-                        <p class="price">$39.99 <span>/ year</span></p>
-                        <p class="desc">7-day free trial · saves about 44% versus monthly.</p>
+                        <p class="price">
+                            <span class="amount" data-usd="$14.99" data-cny="¥48">$14.99</span>
+                            <span class="unit" data-usd="/ first year" data-cny="/ 首年">/ first year</span>
+                            <span class="price-note"><span data-usd="then" data-cny="之后">then</span> <span data-usd="$29.99 / year" data-cny="¥98 / 年">$29.99 / year</span></span>
+                        </p>
+                        <p class="desc">Launch price for the first year; renews at the regular price.</p>
                         <ul>
                             <li>Unlimited transcription</li>
                             <li>AI hour, day, week and month reviews</li>
                             <li>Chat, follow-ups, and daily improvement</li>
                         </ul>
-                        <a class="plan-btn" href="https://apps.apple.com/app/id6823157641">Start free trial</a>
+                        <a class="plan-btn" href="https://apps.apple.com/app/id6823157641">Get yearly offer</a>
                     </article>
 
                     <article class="plan">
                         <p class="plan-tag">Pay once</p>
                         <h3>Lifetime</h3>
-                        <p class="price">$79.99 <span>/ once</span></p>
-                        <p class="desc">One purchase, no recurring billing.</p>
+                        <p class="price">
+                            <span class="amount" data-usd="$19.99" data-cny="¥68">$19.99</span>
+                            <span class="unit" data-usd="/ once" data-cny="/ 一次性">/ once</span>
+                            <span class="price-note"><span data-usd="was" data-cny="原价">was</span> <s data-usd="$39.99" data-cny="¥168">$39.99</s></span>
+                        </p>
+                        <p class="desc">One purchase at the launch price; no recurring billing.</p>
                         <ul>
                             <li>Unlimited transcription</li>
                             <li>AI hour, day, week and month reviews</li>
@@ -1231,7 +1334,7 @@
                         <a class="plan-btn" href="https://apps.apple.com/app/id6823157641">Get lifetime</a>
                     </article>
                 </div>
-                <p class="fineprint">Subscriptions renew automatically and are billed through your App Store account. Cancel at least 24 hours before the period ends to stop renewal. Prices shown in US dollars; the App Store displays your local price.</p>
+                <p class="fineprint">Launch offer runs for one month only. Subscription launch prices apply to the first billing period and renew at the regular price shown; the Lifetime launch price applies during the offer. Subscriptions renew automatically and are billed through your App Store account; cancel at least 24 hours before the period ends to stop renewal. Prices are shown in US dollars unless CNY is selected; the App Store always displays your local price.</p>
             </div>
         </section>
 
@@ -1363,6 +1466,29 @@
             });
 
             document.getElementById("year").textContent = new Date().getFullYear();
+
+            var currencyButtons = document.querySelectorAll(".currency-btn");
+            var currencyStatus = document.getElementById("currency-status");
+
+            function setCurrency(currency) {
+                document.querySelectorAll("[data-usd]").forEach(function (el) {
+                    var value = el.getAttribute("data-" + currency);
+                    if (value !== null) { el.textContent = value; }
+                });
+                currencyButtons.forEach(function (btn) {
+                    btn.setAttribute("aria-pressed", String(btn.dataset.currency === currency));
+                });
+                if (currencyStatus) {
+                    currencyStatus.textContent = currency === "cny"
+                        ? "Showing prices in Chinese yuan."
+                        : "Showing prices in US dollars.";
+                }
+            }
+
+            currencyButtons.forEach(function (btn) {
+                btn.addEventListener("click", function () { setCurrency(btn.dataset.currency); });
+            });
+            setCurrency("usd");
 
             var reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
             var nodes = document.querySelectorAll(".reveal");
