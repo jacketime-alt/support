@@ -20,6 +20,8 @@
 
     <!-- Canonical -->
     <link rel="canonical" href="https://jacketime-alt.github.io/support/VoxTrail/">
+    <link rel="alternate" hreflang="en" href="https://jacketime-alt.github.io/support/VoxTrail/">
+    <link rel="alternate" hreflang="zh-Hans" href="https://jacketime-alt.github.io/support/VoxTrail/support-zh-Hans.html">
     <meta name="robots" content="index, follow">
 
     <!-- AI crawler -->
@@ -135,6 +137,15 @@
             color: #a07855;
             font-size: 1.1rem;
         }
+        .lang-switch {
+            margin-top: 14px;
+            font-size: 0.9rem;
+        }
+        .lang-switch a {
+            color: #8b5a2b;
+            text-decoration: none;
+            border-bottom: 1px solid rgba(139, 90, 43, 0.35);
+        }
         section {
             background-color: white;
             padding: 30px;
@@ -210,6 +221,7 @@
     <header>
         <h1>VoxTrail</h1>
         <p class="subtitle">Help &amp; Support</p>
+        <p class="lang-switch"><a href="support-zh-Hans.html" data-lang-switch="zh">中文</a></p>
     </header>
 
     <section>
@@ -261,7 +273,7 @@
 
         <div class="faq-item">
             <div class="faq-question">What do the three paid plans include?</div>
-            <div class="faq-answer">All three plans — Monthly, Yearly, and Lifetime — unlock exactly the same features: unlimited transcription, AI hour/day/week/month reviews, chat, follow-ups, daily improvement, and the completed-follow-up history (Apple Intelligence or your own key). They differ only in how you pay. Monthly and Yearly are auto-renewing subscriptions with a 7-day free trial; Lifetime is a one-time purchase.</div>
+            <div class="faq-answer">All three plans — Monthly, Yearly, and Lifetime — unlock exactly the same features: unlimited transcription, AI hour/day/week/month reviews, chat, follow-ups, daily improvement, and the completed-follow-up history (Apple Intelligence or your own key). They differ only in how you pay. Monthly and Yearly are auto-renewing subscriptions; Lifetime is a one-time purchase. Whether a free trial is offered depends on the current App Store offer and is shown on the purchase screen.</div>
         </div>
 
         <div class="faq-item">
@@ -333,13 +345,63 @@
     <section>
         <h2>📄 Legal Information</h2>
         <div class="legal-links">
-            <a href="https://jacketime-alt.github.io/support/VoxTrail/privacy.html" target="_blank">Privacy Policy</a>
-            <a href="https://jacketime-alt.github.io/support/VoxTrail/terms.html" target="_blank">Terms of Service</a>
+            <a href="privacy.html" target="_blank">Privacy Policy</a>
+            <a href="terms.html" target="_blank">Terms of Service</a>
         </div>
     </section>
 
     <footer>
         <p>© 2026 Jun Huang. All Rights Reserved. VoxTrail is available exclusively on the Apple App Store.</p>
     </footer>
+
+    <script>
+    (function () {
+        var KEY = "voxtrail.lang";
+        function zhTarget() {
+            var path = location.pathname;
+            if (/support-zh-Hans\.html$/.test(path)) { return path; }
+            if (/index\.html$/.test(path)) {
+                return path.replace(/index\.html$/, "support-zh-Hans.html");
+            }
+            if (/VoxTrail Support\.html$/.test(path)) {
+                return path.replace(/VoxTrail Support\.html$/, "VoxTrail Support-zh-Hans.html");
+            }
+            if (/\/$/.test(path)) { return path + "support-zh-Hans.html"; }
+            return "support-zh-Hans.html";
+        }
+        var params = new URLSearchParams(location.search);
+        var q = params.get("lang");
+        var stored = null;
+        try { stored = localStorage.getItem(KEY); } catch (error) {}
+        var browser = (navigator.languages && navigator.languages[0]) || navigator.language || "en";
+        var pref = q || stored;
+        var wantZh = pref ? /^zh/i.test(pref) : /^zh/i.test(browser);
+        if (wantZh) {
+            try {
+                if (!sessionStorage.getItem("vt.lang.redirect")) {
+                    sessionStorage.setItem("vt.lang.redirect", "1");
+                    location.replace(zhTarget() + (q ? "?lang=zh" : ""));
+                    return;
+                }
+            } catch (error) {
+                location.replace(zhTarget() + (q ? "?lang=zh" : ""));
+                return;
+            }
+        }
+        function wireSwitch() {
+            var link = document.querySelector("[data-lang-switch]");
+            if (!link) { return; }
+            link.setAttribute("href", zhTarget());
+            link.addEventListener("click", function () {
+                try { localStorage.setItem(KEY, "zh"); } catch (error) {}
+            });
+        }
+        if (document.readyState === "loading") {
+            document.addEventListener("DOMContentLoaded", wireSwitch);
+        } else {
+            wireSwitch();
+        }
+    })();
+    </script>
 </body>
 </html>
